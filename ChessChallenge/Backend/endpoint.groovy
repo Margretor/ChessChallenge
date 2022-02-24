@@ -1,7 +1,10 @@
 @Grapes([
   @Grab('io.ratpack:ratpack-groovy:1.9.0'),
   @Grab('org.slf4j:slf4j-simple:1.7.30')
+  //grab mysql conn
 ])
+
+import groovy.sql.Sql
 import static ratpack.groovy.Groovy.ratpack
 //def map
 

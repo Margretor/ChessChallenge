@@ -1,4 +1,4 @@
- docker run --name some-mysql -v C:/Users/User/Desktop/db:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8
+docker run --name some-mysql -v C:/Users/User/Desktop/db:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8
 
 docker logs some-mysql
 
@@ -13,3 +13,13 @@ mysql> source script_name.sql
 
 docker start container_name
 docker rm -f ID
+
+
+USER
+
+CREATE USER numeUtilizator@localhost IDENTIFIED BY "parola";
+SELECT user FROM mysql.user;
+DROP USER numeUtilizator@localhost;
+GRANT ALL ON numeDB.* TO numeUtilizator@localhost; 
+
+
