@@ -1,0 +1,77 @@
+-> Resursele:
+1. piese -> localhost/piese
+	Proprietati:
+	->culoare (alb/negru)	
+	->tip (pion, cal, regina..)
+	->pozitie    
+	->daca e sau nu pe tabla (prezenta)
+	
+	Operatiile:
+	->POST => Se defineste "Situatia Z" = in cazul in care un jucator ajunge cu pionul in partea cealalta a tablei. In aceste conditii, acesta are optiunea de a aduce o piesa "scoasa" inapoi pe tabla, deci acea piesa se va crea din nou.
+	->PUT => in urma miscarii unui pion, se face update la pozitie.
+	     !! => in Situatia Z, in cazul in care jucatorul alege o piesa a adversarului, odata ajunsa pe tabla, culoarea piesei se modifica a.i. sa corespunda cu culoarea jucatorului. 
+	
+	->DELETE => sterge o piesa cand aceasta e eliminata de pe tabla de catre adversar.
+
+
+2. patratica -> localhost/tabla/patratica (/id_patratica/piesa/id_piesa)
+		localhost/tabla/piesa
+	Proprietati:
+	->culoare	
+	->coordonate  
+	->id piesa  
+
+	
+	
+
+
+3. tabla -> localhost/tabla ???
+	Proprietati:
+	->matrice_patratele
+	->lista_piese
+	->scor (se calc dinamic, la fiecare GET)
+	->randul cui este?  1-0
+
+	Operatii:
+	-> GET (I)
+		->if exist return tabla sau NULL
+	->POST(II)      create_patratele -> create in database
+			create_piese	-> create in db
+			return tabla
+	->albul incepe. se modifica contorul
+	->GET => este vazut ca un refresh, realizat dupa fiecare piesa mutata, in urma caruia se observa forma tablei(cum arata).
+	
+
+
+
+
+4.jucator 
+header :alb/negru mentinut la fiecare request
+
+
+tabele bazate pe resurse si rel dintre ele
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
