@@ -9,44 +9,32 @@ import backend.methods
 import groovy.sql.Sql
 import static ratpack.groovy.Groovy.ratpack
 
+
 def Method = new methods()
-//def map
-Method.addun(5,6)
-println(Method.get_turn())
+def mapa1 = Method.get_mapa()
 
-/*def json = new groovy.json.JsonBuilder()
-
-json rootKey: someMap
-
-println "json output: "
-println groovy.json.JsonOutput.prettyPrint(json.toString())*/
+//Method.addun(5,6)
+//println(Method.get_turn())
+//println(Method.res3)
 
 
-
-
-
-
-
-/*
 
 ratpack{
     
     handlers{
         get("tabla"){
-           render "hello dawn"
-        //metoda1 -> care creeaza patratele (script groovy separat) map = functie()
-        //metoda 2 -> creeaza piesele
-        //se creeaza p. si se pun in memorie in structura mea de date care o sa fie un map(apoi fac tranzitia catre bd)
-        //convertesc map ul in json =>se obt json-ul care se returneaza ca raspuns
+            //render "hello dawn"
+            def json = new groovy.json.JsonBuilder(mapa1)
+            render groovy.json.JsonOutput.prettyPrint(json.toString())
         }
         
-        get("tabla/patratica/piese/:id"){
+       /* get("tabla/patratica/piese/:id"){
             render "astea sunt piesele"
-        }
+        }*/
        
     }
 }
-*/
+
 
 
 

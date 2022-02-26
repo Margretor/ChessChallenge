@@ -7,8 +7,8 @@ import groovy.sql.Sql
 
 
 class methods {    
-    static res_piece = []   //dispae pt endpoint
-    static res = []         //dispae pt endpoint
+    static res_piece = []   
+    static res = []         
 
 
     /*static start() {
@@ -31,7 +31,7 @@ class methods {
 
 
 
-    static do_sql(String command){          //def do_sql pt endpoint
+    static do_sql(String command){         
         def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
          'testuser', 'test123', 'com.mysql.jdbc.Driver')
         res = sql.rows(command, 1,3) 
@@ -40,12 +40,12 @@ class methods {
 
     }
 
-    static void main(String[] args){        //dispare pt endpoint
-        def res1 = do_sql('SELECT * FROM tblSquares')       //ramane in methods pt endpoint
-        def res2 = do_sql('SELECT * FROM tblPieces')        //ramane in methods pt endpoint
-        def res3w = do_sql('SELECT scoreW FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')   //ramane in methods pt endpoint
-        def res3b = do_sql('SELECT scoreB FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')   //ramane in methods pt endpoint
-        def res4 = do_sql('SELECT turn FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')      //ramane in methods pt endpoint
+    static void main(String[] args){        
+        def res1 = do_sql('SELECT * FROM tblSquares')       
+        def res2 = do_sql('SELECT * FROM tblPieces')        
+        def res3w = do_sql('SELECT scoreW FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')   
+        def res3b = do_sql('SELECT scoreB FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')   
+        def res4 = do_sql('SELECT turn FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')      
         println res1
         println res2
         println res3w
@@ -68,3 +68,12 @@ class methods {
     }
 
 }
+
+
+
+
+
+
+//in endpoint:
+//def json = new groovy.json.JsonBuilder(mapa1)
+//println groovy.json.JsonOutput.prettyPrint(json.toString())
