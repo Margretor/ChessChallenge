@@ -11,7 +11,7 @@ def m = new Integer[8][8]
 assert m.size() == 8
 for(i=0; i<8; i++){
     for(j=0; j<8; j++){
-        m[i][j]=vector[i]
+        m[i][j]=vector[i*8+j]
     }
 }
 
