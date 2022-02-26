@@ -49,17 +49,17 @@ class methods {
     }
 
     def get_scorew(){
-      def res3w = do_sql('SELECT scoreW FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')
+      def res3w = do_sql('SELECT scoreW FROM tblBoard')
       return res3w
     }
 
     def get_scoreb(){
-      def res3b = do_sql('SELECT scoreB FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')
+      def res3b = do_sql('SELECT scoreB FROM tblBoard')
       return res3b
     }
 
     def get_turn(){
-      def res4 = do_sql('SELECT turn FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')
+      def res4 = do_sql('SELECT turn FROM tblBoard')
       return res4
     }
 
