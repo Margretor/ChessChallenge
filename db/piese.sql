@@ -1,6 +1,6 @@
-DROP DATABASE boardDB;
-CREATE DATABASE boardDB;
-USE boardDB;
+DROP DATABASE chessDB;
+CREATE DATABASE chessDB;
+USE chessDB;
 CREATE TABLE tblPieces (
 	id			 INT PRIMARY KEY, 
 	pieceType    VARCHAR(10) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE tblPieces (
 	onBoard	 	 TINYINT(1) NOT NULL
 	
 );
-
+# 0 increment
 DESCRIBE tblPieces;
 
 CREATE TABLE tblSquares (
@@ -21,6 +21,15 @@ CREATE TABLE tblSquares (
 );
 
 DESCRIBE tblSquares;
+
+CREATE TABLE tblBoard (
+	movementNr INT PRIMARY KEY AUTO_INCREMENT,
+	scoreW INT,
+	scoreB INT,
+	turn   TINYINT(1)
+);
+DESCRIBE tblBoard;
+
 #pawn - pion 	rook - tura		knight - cal	bishop - nebunul	queen king
 
 INSERT INTO tblPieces VALUES( 0, "rook", "black", 0, 1), ( 1, "knight", "black", 1, true),
@@ -41,8 +50,8 @@ INSERT INTO tblPieces VALUES( 0, "rook", "black", 0, 1), ( 1, "knight", "black",
 ( 28, "king", "white", 60, true), ( 29, "bishop", "white", 61, true), 
 ( 30, "knight", "white", 62, true), ( 31, "rook", "white", 63, true);
 
-
 SELECT * FROM tblPieces;
+
 
 INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "white", 2, 2), 
 (3,"black", 3, 3), (4, "white", 4, 4), (5,"black", 5, 5), (6, "white", 6, 6),
@@ -62,5 +71,9 @@ INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "whit
 (59, "white", 59, 27), ( 60, "black", 60, 28), (61, "white", 61, 29), ( 62, "black", 62, 30), 
 (63,"white", 63, 31); 
 
-
 SELECT * FROM tblSquares;
+
+
+INSERT INTO tblBoard (scoreW, scoreB, turn)VALUES( 0, 0, 0);
+
+SELECT * FROM tblBoard;
