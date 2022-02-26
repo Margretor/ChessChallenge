@@ -23,7 +23,6 @@ CREATE TABLE tblSquares (
 DESCRIBE tblSquares;
 
 CREATE TABLE tblBoard (
-	movementNr INT PRIMARY KEY AUTO_INCREMENT,
 	scoreW INT,
 	scoreB INT,
 	turn   TINYINT(1)
@@ -74,6 +73,6 @@ INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "whit
 SELECT * FROM tblSquares;
 
 
-INSERT INTO tblBoard (scoreW, scoreB, turn)VALUES( 0, 0, 0);
+INSERT INTO tblBoard VALUES( 0, 0, 0);
 
 SELECT * FROM tblBoard;
