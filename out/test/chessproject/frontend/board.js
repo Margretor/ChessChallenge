@@ -20,31 +20,28 @@ var imgKingW = new Image();
 var pieces = new Array(32);
 //
 function loadImages() {
-    imgPawn.src = "../img/blackPawn.png";
-    imgRook.src = "../img/blackRook.png";
-    imgKnight.src = "../img/blackKnight.png";
-    imgBishop.src = "../img/blackBishop.png";
-    imgQueen.src = "../img/blackQueen.png";
-    imgKing.src = "../img/blackKing.png";
-    imgPawnW.src = "../img/whitePawn.png";
-    imgRookW.src = "../img/whiteRook.png";
-    imgKnightW.src = "../img/whiteKnight.png"
-    imgBishopW.src = "../img/whiteBishop.png";
-    imgQueenW.src = "../img/whiteQueen.png";
-    imgKingW.src = "../img/whiteKing.png";
+    imgPawn.src = "/img/blackPawn.png";
+    imgRook.src = "/img/blackRook.png";
+    imgKnight.src = "/img/blackKnight.png";
+    imgBishop.src = "/img/blackBishop.png";
+    imgQueen.src = "/img/blackQueen.png";
+    imgKing.src = "/img/blackKing.png";
+    imgPawnW.src = "/img/whitePawn.png";
+    imgRookW.src = "/img/whiteRook.png";
+    imgKnightW.src = "/img/whiteKnight.png"
+    imgBishopW.src = "/img/whiteBishop.png";
+    imgQueenW.src = "/img/whiteQueen.png";
+    imgKingW.src = "/img/whiteKing.png";
 }
 // Define a class to store the piece properties
 function BlackRook() {
-    console.log(imgRook.src);
-    var image = imgRook;
-    var x = 3;
-    var y = 3;
-    var height = 2;
-    var width = 2;
-    var deleted = false;
-    console.log("inainte");
-    chessContext.drawImage(image, x, y);
-    console.log("dupa");
+    this.image = imgRook;
+    this.x = 0;
+    this.y = 0;
+    this.height = 2;
+    this.width = 2;
+    this.deleted = false;
+    context.drawImage(this.image, this.x, this.y, 50, 100);
 }
 // Draw the chess board
 function drawBoard() {
@@ -62,18 +59,12 @@ function drawBoard() {
     // Add a border around the entire board
     chessContext.strokeRect(0, 0, 600, 600);
 }
-
-// Draw a chess piece
-function drawPiece(piece) {
-    if (!piece.deleted)
-        chessContext.drawImage(p.image,0,0, width, height);
-}
 loadImages();
-drawPiece()
-//drawBoard();
+drawBoard();
 BlackRook();
 
 // //CREATE IMAGE OBJECT
 // var myImage = new Image();
 // myImage.src = "images/sample.jpg";
 // context.drawImage(myImage, 0,0, 50, 100);
+

@@ -1,0 +1,13 @@
+
+
+import com.mayankrastogi.cs441.hw4.chessservice.core.ChessMove;
+import com.mayankrastogi.cs441.hw4.chessservice.core.PlayerColor;
+import com.mayankrastogi.cs441.hw4.chessservice.core.dto.ChessMoveDTO;
+import com.mayankrastogi.cs441.hw4.chessservice.core.dto.ViewStateDTO;
+import retrofit2.Call;
+import retrofit2.http.*;
+
+public interface ChessAPI {
+
+
+}

@@ -1,0 +1,62 @@
+DROP DATABASE boardDB;
+CREATE DATABASE boardDB;
+USE boardDB;
+CREATE TABLE tblPieces (
+	id			 INT PRIMARY KEY, 
+	pieceType    VARCHAR(10) NOT NULL,
+	colour	 	 VARCHAR(10) NOT NULL,
+	position	 INT UNIQUE NOT NULL,
+	onBoard	 	 TINYINT(1) NOT NULL
+	
+);
+
+DESCRIBE tblPieces;
+
+CREATE TABLE tblSquares (
+	idSquare			  INT PRIMARY KEY, 
+	colourSquare	 	  VARCHAR(10) NOT NULL,
+	positionSquare	      INT UNIQUE NOT NULL,
+	idPiece			      INT,
+	FOREIGN KEY (idPiece) REFERENCES tblPieces(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+DESCRIBE tblSquares;
+#pawn - pion 	rook - tura		knight - cal	bishop - nebunul	queen king
+
+INSERT INTO tblPieces VALUES( 0, "rook", "black", 0, 1), ( 1, "knight", "black", 1, true),
+( 2, "bishop", "black", 2, true), ( 3, "queen", "black", 3, true),
+( 4, "king", "black", 4, true), ( 5, "bishop", "black", 5, true),
+( 6, "knight", "black", 6, true), ( 7, "rook", "black", 7, true),
+( 8, "pawn", "black", 8, true), ( 9, "pawn", "black", 9, true),
+( 10, "pawn", "black", 10, true), ( 11, "pawn", "black", 11, true),
+( 12, "pawn", "black", 12, true), ( 13, "pawn", "black", 13, true),
+( 14, "pawn", "black", 14, true), ( 15, "pawn", "black", 15, true),
+
+( 16, "pawn", "white", 48, true), ( 17, "pawn", "white", 49, true), 
+( 18, "pawn", "white", 50, true), ( 19, "pawn", "white", 51, true), 
+( 20, "pawn", "white", 52, true), ( 21, "pawn", "white", 53, true), 
+( 22, "pawn", "white", 54, true), ( 23, "pawn", "white", 55, true), 
+( 24, "rook", "white", 56, true), ( 25, "knight", "white", 57, true), 
+( 26, "bishop", "white", 58, true), ( 27, "queen", "white", 59, true), 
+( 28, "king", "white", 60, true), ( 29, "bishop", "white", 61, true), 
+( 30, "knight", "white", 62, true), ( 31, "rook", "white", 63, true);
+
+
+SELECT * FROM tblPieces;
+
+INSERT INTO tblSquares ( idSquare, colourSquare, positionSquare)  VALUES ( 0, "white", 0),
+(1, "black", 1), (2, "white", 2), 
+(3,"black", 3), (4, "white", 4), (5,"black", 5), (6, "white", 6), (7, "black", 7), ( 8,"black", 8), 
+(9,"white", 9), (10, "black", 10), (11,"white", 11), (12, "black", 12), (13,"white", 13), (14, "black", 14), 
+(15, "white", 15), (16, "white", 16), (17, "black", 17), (18, "white", 18), (19, "black", 19), (20, "white", 20), 
+(21,"black", 21), (22, "white", 22), (23, "black", 23), (24, "black", 24), (25, "white", 25), (26, "black", 26), 
+(27, "white", 27), (28, "black", 28), (29, "white", 29), (30, "black", 30), (31, "white", 31), (32, "white", 32), 
+(33, "black", 33), (34, "white", 34), (35, "black", 35), (36, "white", 36), (37, "black", 37), (38, "white", 38), 
+(39, "black", 39), (40,  "black", 40), (41, "white", 41), (42, "black", 42), (43,"white", 43), (44, "black", 44), 
+(45, "white", 45), (46, "black", 46), (47, "white", 47), ( 48, "white", 48), (49, "black", 49), (50, "white", 50), 
+(51, "black", 51), (52, "white", 52), (53, "black", 53), (54, "white", 54), (55,"black", 55), (56, "black", 56), 
+(57, "white", 57), (58, "black", 58), (59, "white", 59), ( 60, "black", 60), (61, "white", 61), ( 62, "black", 62), 
+(63,"white", 63); 
+
+
+SELECT * FROM tblSquares;
