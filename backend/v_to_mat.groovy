@@ -2,7 +2,7 @@ def vector = []
 for(i = 0; i < 64; i++){
     vector[i] = i
 }
-println vector
+//println vector
 
 
 

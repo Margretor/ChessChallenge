@@ -60,14 +60,35 @@ class methods {
       return mapa
     }
 
-    def matrixx(){
+    def get_matrix(){
       def vector = []
-      for(int i = 0; i < 64; i++){
-        vector[i] = res1[i].idSquare
+      for(int k = 0; k < 64; k++){
+        vector[k] = res1[k].idSquare
       }
-      return vector
+      //return vector
+      def m = new Integer[8][8]         
+      assert m.size() == 8
+      for(int i = 0; i < 8; i++){
+          for(int j = 0; j < 8; j++){
+              m[i][j] = vector[i*8+j]
+          }
+      }
+      return m
+
+      /*println("The array is below:");
+        
+      for(int i = 0; i < 8 ; i++) {
+        
+        for(int j = 0; j < 8; j++) {
+          
+          print(m[i][j] + " ");
+          
+        }
+        println();
+        }*/
+
     }
-  
+    def mat = get_matrix()
 
     //def addun(x, y) { 
     //println x+y
