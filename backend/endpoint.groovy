@@ -12,13 +12,16 @@ import static ratpack.groovy.Groovy.ratpack
 
 def Method = new methods()
 def mapa1 = Method.get_mapa()
+def vector = Method.matrixx()
+
+println(vector)
 
 //Method.addun(5,6)
 //println(Method.get_turn())
 //println(Method.res3)
 
 
-
+/*
 ratpack{
     
     handlers{
@@ -28,9 +31,9 @@ ratpack{
             render groovy.json.JsonOutput.prettyPrint(json.toString())
         }
         
-       /* get("tabla/patratica/piese/:id"){
+        get("tabla/patratica/piese/:id"){
             render "astea sunt piesele"
-        }*/
+        }
        
     }
 }
@@ -38,5 +41,5 @@ ratpack{
 
 
 
-
+*/
 

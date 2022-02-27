@@ -60,11 +60,17 @@ class methods {
       return mapa
     }
 
-
+    def matrixx(){
+      def vector = []
+      for(int i = 0; i < 64; i++){
+        vector[i] = res1[i].idSquare
+      }
+      return vector
+    }
   
 
-    def addun(x, y) { 
-    println x+y
-    }
+    //def addun(x, y) { 
+    //println x+y
+    //}
 
 }

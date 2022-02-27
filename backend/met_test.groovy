@@ -8,7 +8,9 @@ import groovy.sql.Sql
 
 class methods {    
     static res_piece = []   
-    static res = []         
+    static res = []       
+    static vector = []  
+    static i
 
 
     /*static start() {
@@ -34,28 +36,36 @@ class methods {
     static do_sql(String command){         
         def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
          'testuser', 'test123', 'com.mysql.jdbc.Driver')
-        res = sql.rows(command, 1,3) 
+        res = sql.rows(command) 
         sql.close()
         return res
 
+    }
+     static matrixx(ArrayList res){
+      for(i = 0; i < 64; i++){
+        vector[i] = res[i].idSquare
+      }
+      return vector
     }
 
     static void main(String[] args){        
         def res1 = do_sql('SELECT * FROM tblSquares')       
         def res2 = do_sql('SELECT * FROM tblPieces')        
-        def res3w = do_sql('SELECT scoreW FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')   
-        def res3b = do_sql('SELECT scoreB FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')   
-        def res4 = do_sql('SELECT turn FROM tblBoard WHERE movementNr = (SELECT MAX(movementNr) FROM tblBoard)')      
-        println res1
-        println res2
-        println res3w
-        println res3b
-        println res4
+        def res3w = do_sql('SELECT scoreW FROM tblBoard')   
+        def res3b = do_sql('SELECT scoreB FROM tblBoard')   
+        def res4 = do_sql('SELECT turn FROM tblBoard')      
+       // println res1
+       // println res2
+        //println res3w
+        //println res3b
+        //println res4
         def result = [res1, res2, res3w, res3b, res4]
-        println result
+        //println result
+        def vector1 = matrixx(res1)
+        println vector1
     }
 
-    
+   
 
 
     def addun(x, y) { 
