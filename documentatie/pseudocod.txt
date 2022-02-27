@@ -1,0 +1,51 @@
+tabla = make_request()
+
+tabla = "{"squaresList" : [{"idSquare" : 0,"colourSquare" : "white","positionSquare" : 0,"idPiece" : 0},
+{"idSquare" : 1,"colourSquare" : "black","positionSquare" : 1,"idPiece" : 1}],
+"piecesList" : [{"id" : 0,"pieceType" : "rook", "colour" : "black","position" : 0,"onBoard" : 1},{         "id" : 1,
+            "pieceType" : "knight",
+            "colour" : "black",
+            "position" : 1,
+            "onBoard" : 1,
+        }
+        
+        
+    ],
+    "scor" : 2 ,
+    "turn" : 0
+    
+}"
+
+
+
+for bla bla
+        for bla bla
+//face tabla
+
+lista_piese = tabla.piecesList
+
+for piesa in lista_piese
+        
+        if (piesa.onboard)
+                switch(piesa.pieceType)
+                        "rook":
+                                if piesa.color == black
+                                        img = tipul rook_black
+                                else
+                                        img = tipul rook_white
+
+                ...
+        
+
+        deseneaza(img, posx, posy)
+
+
+                        
+function deseneaza(piesa){
+        x = calcul din piesa.pos
+        y = calcul din piesa.pos
+
+        posx = x * pixeli
+        posy = y * pixeli
+        draw(piesa)
+}

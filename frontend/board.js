@@ -99,7 +99,7 @@ pieces.forEach(piece => {
                     console.log(imgQueenW);
                 }
                 break;
-            case 'pawn';
+            case 'pawn':
                 if (piece.colour == 'black' ) {
                     var img = imgPawn;
                     console.log(imgPawn);
@@ -109,7 +109,7 @@ pieces.forEach(piece => {
                     console.log(imgPawnW);
                 }
                 break;
-            case 'bishop';
+            case 'bishop':
                 if (piece.colour == 'black' ) {
                     var img = imgBishop;
                     console.log(imgBishop);
@@ -119,7 +119,7 @@ pieces.forEach(piece => {
                     console.log(imgBishopW);
                 }
                 break;
-            case 'king';
+            case 'king':
                 if (piece.colour == 'black' ) {
                     var img = imgKing;
                     console.log(imgKing);
