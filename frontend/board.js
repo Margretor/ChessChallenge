@@ -16,9 +16,13 @@ var imgBishopW = new Image();
 var imgQueenW = new Image();
 var imgKingW = new Image();
 
-//array of 32 pieces
-var pieces = new Array(32);
-//
+
+var txt = '{"squaresList":[{"idSquare":0,"colourSquare":"white","positionSquare":0,"idPiece":0},{"idSquare":1,"colourSquare":"black","positionSquare":1,"idPiece":1}],"piecesList":[{"id":0,"pieceType":"rook","colour":"black","position":0,"onBoard":1},{"id":1,"pieceType":"knight","colour":"black","position":1,"onBoard":1}],"scor":2,"turn":0}';
+const obj = JSON.parse(txt);
+var pieces = obj.piecesList;
+console.log(obj);
+console.log(pieces);
+
 function loadImages() {
     imgPawn.src = "../img/blackPawn.png";
     imgRook.src = "../img/blackRook.png";
@@ -33,19 +37,14 @@ function loadImages() {
     imgQueenW.src = "../img/whiteQueen.png";
     imgKingW.src = "../img/whiteKing.png";
 }
-// Define a class to store the piece properties
-function BlackRook() {
-    console.log(imgRook.src);
-    var image = imgRook;
-    var x = 3;
-    var y = 3;
-    var height = 2;
-    var width = 2;
-    var deleted = false;
-    console.log("inainte");
-    chessContext.drawImage(image, x, y);
-    console.log("dupa");
+
+
+
+// Draw a chess piece
+function drawPiece(piece) {
+        chessContext.drawImage(piece,0,0);
 }
+
 // Draw the chess board
 function drawBoard() {
     chessContext.clearRect(0, 0, 600, 600);
@@ -63,15 +62,92 @@ function drawBoard() {
     chessContext.strokeRect(0, 0, 600, 600);
 }
 
-// Draw a chess piece
-function drawPiece(piece) {
-    if (!piece.deleted)
-        chessContext.drawImage(p.image,0,0, width, height);
+window.onload=function (){
+pieces.forEach(piece => {
+    console.log(piece);
+    var img;
+    if (piece.onBoard==1){
+        console.log(piece.pieceType);
+        switch (piece.pieceType) {
+            case 'rook':
+                if (piece.colour == 'black' ) {
+                  var img = imgRook;
+                  console.log(imgRook);
+                }
+                else {
+                   var img = imgRookW;
+                    console.log(imgRookW);
+                }
+                break;
+            case 'knight':
+                if (piece.colour == 'black' ) {
+                    var img = imgKnight;
+                    console.log(imgKnight);
+                }
+                else {
+                    var img = imgKnightW;
+                    console.log(imgKnightW);
+                }
+                break;
+            case 'queen':
+                if (piece.colour == 'black' ) {
+                    var img = imgQueen;
+                    console.log(imgQueen);
+                }
+                else {
+                    var img = imgQueenW;
+                    console.log(imgQueenW);
+                }
+                break;
+            case 'pawn';
+                if (piece.colour == 'black' ) {
+                    var img = imgPawn;
+                    console.log(imgPawn);
+                }
+                else {
+                    var img = imgPawnW;
+                    console.log(imgPawnW);
+                }
+                break;
+            case 'bishop';
+                if (piece.colour == 'black' ) {
+                    var img = imgBishop;
+                    console.log(imgBishop);
+                }
+                else {
+                    var img = imgBishopW;
+                    console.log(imgBishopW);
+                }
+                break;
+            case 'king';
+                if (piece.colour == 'black' ) {
+                    var img = imgKing;
+                    console.log(imgKing);
+                }
+                else {
+                    var img = imgKingW;
+                    console.log(imgKingW);
+                }
+                break;
+        }
+    console.log(img);
+    drawPiece(img);
 }
+    );
+}
+
+
+
+
+
+
+
+
+
+
 loadImages();
-drawPiece()
-//drawBoard();
-BlackRook();
+drawBoard();
+
 
 // //CREATE IMAGE OBJECT
 // var myImage = new Image();
