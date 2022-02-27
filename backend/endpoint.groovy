@@ -12,9 +12,13 @@ import static ratpack.groovy.Groovy.ratpack
 
 def Method = new methods()
 def mapa1 = Method.get_mapa()
+//println(mapa1)
+Method.do_the_move()
+
+
 
 //print the matrix of idSquares:
-/*def mat = Method.mat
+/*def mat = Method.get_matrix()
 for(int i = 0; i < 8 ; i++) {
         
         for(int j = 0; j < 8; j++) {
@@ -23,7 +27,7 @@ for(int i = 0; i < 8 ; i++) {
           
         }
         println();
-        }
+}
 */
 
 
@@ -51,6 +55,6 @@ ratpack{
 
 
 
-
 */
+
 

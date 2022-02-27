@@ -8,7 +8,6 @@ import groovy.sql.Sql
 
 class methods {    
     
-
     def do_sql(String command){          
         def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
          'testuser', 'test123', 'com.mysql.jdbc.Driver')
@@ -18,80 +17,133 @@ class methods {
 
     }
 
-
     def get_squares(){
-      def res1 = do_sql('SELECT * FROM tblSquares')  
-      return res1
+      def squares = do_sql('SELECT * FROM tblSquares')  
+      return squares
 
     }
     
     def get_pieces(){
-      def res2 = do_sql('SELECT * FROM tblPieces')
-      return res2
+      def pieces = do_sql('SELECT * FROM tblPieces')
+      return pieces
     }
 
     def get_scorew(){
-      def res3w = do_sql('SELECT scoreW FROM tblBoard')
-      return res3w
+      def scorew = do_sql('SELECT scoreW FROM tblBoard')
+      return scorew
     }
 
     def get_scoreb(){
-      def res3b = do_sql('SELECT scoreB FROM tblBoard')
-      return res3b
+      def scoreb = do_sql('SELECT scoreB FROM tblBoard')
+      return scoreb
+    }
+
+    def get_score(){
+      String score = "white : ${get_scorew()[0].scoreW} - black : ${get_scoreb()[0].scoreB}"
+      return score
     }
 
     def get_turn(){
-      def res4 = do_sql('SELECT turn FROM tblBoard')
-      return res4
+      def turn = do_sql('SELECT turn FROM tblBoard')
+      return turn
     }
 
-   
-     def res1 = get_squares() 
-     def res2 = get_pieces()
-     def res3w = get_scorew() 
-     def res3b = get_scoreb()
-     String res3 = "${res3w[0].scoreW} - ${res3b[0].scoreB}"
-     def res4 = get_turn()[0].turn
-   
-    //def mapa = ["squaresList":res1, "piecesList": res2, "score":res3, "turn": res4]
+     //def resSquares = get_squares() 
+     //def resPieces = get_pieces()
+     //def resScorew = get_scorew() 
+     //def resScoreb = get_scoreb()
+     //String res3 = "white : ${res3w[0].scoreW} - black : ${res3b[0].scoreB}"
+     //def res4 = get_turn()[0].turn
     
-    def get_mapa(){
-      def mapa = ["squaresList":res1, "piecesList": res2, "score":res3, "turn": res4]
+     def get_mapa(){
+      def mapa = ["squaresList" : get_squares(), "piecesList" : get_pieces(), "score" : get_score(), "turn" : get_turn()[0].turn]
       return mapa
     }
+    
+
+     
 
     def get_matrix(){
       def vector = []
       for(int k = 0; k < 64; k++){
-        vector[k] = res1[k].idSquare
+        if(get_squares()[k].idPiece == null){
+          vector[k] = -1
+        }
+        else
+          vector[k] = get_squares()[k].idPiece
       }
+      
       //return vector
+      
       def m = new Integer[8][8]         
       assert m.size() == 8
       for(int i = 0; i < 8; i++){
           for(int j = 0; j < 8; j++){
-              m[i][j] = vector[i*8+j]
+                m[i][j] = vector[i*8+j]
           }
       }
+
       return m
-
-      /*println("The array is below:");
-        
-      for(int i = 0; i < 8 ; i++) {
-        
-        for(int j = 0; j < 8; j++) {
-          
-          print(m[i][j] + " ");
-          
-        }
-        println();
-        }*/
-
     }
-    def mat = get_matrix()
+    
+   /* is_valid_pawn(){
+        
+    }
+  
+    def is_it_valid(){
+      for(int i = 0; i < maxIdPiece; i++){
+        if( ce_primesc_de_la_anca.piesa.id == res2[i].id){
+          switch (res2[i].pieceType){
+          case "rook":
+          case "knight":
+          case "bishop":
+          case "queen":
+          case "king":
+          case "pawn":
+          }               
+        }
+      }     
+      return bool
+    }
+
+    def bool = is_it_valid() //nu asa!! */
+
+    def bool = true
+    
+    def do_the_move(){
+      def maxIdPieces = do_sql('SELECT MAX(id) FROM tblPieces')
+      def key = "MAX(id)"
+      def max = maxIdPieces[key][0]
+      if (bool){
+        //println max
+        
+        for(int i = 0; i <= max; i++){
+          println i
+          //if( ce_primesc_de_la_anca.id == get_pieces()[i].id){
+            //return get_pieces()[i]
+            //update    in bd          
+            //get_matrix()
+          //}
+        }
+      }
+
+      //else ??
+ 
+    }
+
+
+
+
+
+
+
+
+
+
 
     //def addun(x, y) { 
     //println x+y
     //}
+    
 
 }
