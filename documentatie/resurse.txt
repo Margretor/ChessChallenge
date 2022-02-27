@@ -8,11 +8,10 @@
 	
 	Operatiile:
 	->POST => Se defineste "Situatia Z" = in cazul in care un jucator ajunge cu pionul in partea cealalta a tablei. In aceste conditii, acesta are optiunea de a aduce o piesa "scoasa" inapoi pe tabla, deci acea piesa se va crea din nou.
-	->PUT => in urma miscarii unui pion, se face update la pozitie.
-	     !! => in Situatia Z, in cazul in care jucatorul alege o piesa a adversarului, odata ajunsa pe tabla, culoarea piesei se modifica a.i. sa corespunda cu culoarea jucatorului. 
+	->PUT => in urma miscarii unui pion, se face update la pozitie (daca se scoate o piesa de pe tabla, se sterge din baza de date).
+	  (--)   !! => in Situatia Z, in cazul in care jucatorul alege o piesa a adversarului, odata ajunsa pe tabla, culoarea piesei se modifica a.i. sa corespunda cu culoarea jucatorului. 	
+	(--)->DELETE => sterge o piesa cand aceasta e eliminata de pe tabla de catre adversar.
 	
-	->DELETE => sterge o piesa cand aceasta e eliminata de pe tabla de catre adversar.
-
 
 2. patratica -> localhost/tabla/patratica (/id_patratica/piesa/id_piesa)
 		localhost/tabla/piesa
@@ -20,10 +19,7 @@
 	->culoare	
 	->coordonate  
 	->id piesa  
-
-	
-	
-
+	??mutarea e valida??
 
 3. tabla -> localhost/tabla
 	Proprietati:
@@ -35,7 +31,7 @@
 	Operatii:
 	-> GET (I)
 		->if exist return tabla sau NULL
-	->POST(II)      create_patratele -> create in database
+	(~)->POST(II)      create_patratele -> create in database
 			create_piese	-> create in db
 			return tabla
 	->albul incepe. se modifica contorul
@@ -50,19 +46,6 @@ header :alb/negru mentinut la fiecare request
 
 
 tabele bazate pe resurse si rel dintre ele
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
