@@ -89,17 +89,51 @@ class methods {
 
     def get_i_j()
 
-    /*
+    
     def is_valid_pawn(ci, cj, di, dj){
-      ci, cj
-      destini, dj,
-      newi, newj = 
-      bool -> modif
+      def bool
+      //ci, cj
+      //destini, dj,
+      if (ce_primesc_de_la_anca.piece.color == "white") {
+        if(pozitie iniriala){
+          newi = ci - 1   //poate fi si ci - 2
+          newj = cj
+
+        }
+        if(piesa neagra pe diagonala){
+          newi = ci - 1
+          newj = cj + 1  //mai poate fi si cj - 1
+
+        }
+        newi = ci - 1
+        newj = cj
+
+      }
+       if (ce_primesc_de_la_anca.piece.color == "black") {         
+        if(pozitie iniriala){
+          newi = ci + 1   //poate fi si ci + 2
+          newj = cj
+
+        }
+        if(piesa alba pe diagonala){
+          newi = ci + 1
+          newj = cj + 1  //mai poate fi si cj - 1
+
+        }
+        newi = ci + 1
+        newj = cj
+
+      }
+      if((newi == di) && (newj == dj)){
+        bool = true
+      }
+       //are obstacole?? 
+      //bool -> modif
       
 
       return bool
     }
-
+/*
     def is_valid_rook(ci, cj, di, dj){
 
       return bool
@@ -179,7 +213,7 @@ class methods {
     //else ???
 
 
-    def do_the_move(){         //turn
+    def do_the_move(){         //turn  //do_the_move(json_din_post == ce primesc de la anca)
         def pieces = get_pieces()    
         for(int i = 0; i < pieces.size(); i++){          
           if( data.piece.id == pieces[i].id){
