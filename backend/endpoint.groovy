@@ -8,18 +8,18 @@ import backend.methods
 ])
 
 import groovy.sql.Sql
-import static ratpack.groovy.Groovy.*
-//import ratpack.jackson.JacksonModule          
+import static ratpack.groovy.Groovy.*         
 import static ratpack.jackson.Jackson.jsonNode
 
 def Method = new methods()
-def mapa1 = Method.get_mapa()
-//println(mapa1.piecesList[1].id)
-Method.do_the_move()
+//def mapa1 = Method.get_mapa()
+
+//Method.do_the_move()
+
+//println(Method.get_mapa().piecesList[1].id)
 //println(Method.get_mapa().squaresList[51])
 //println(Method.get_mapa().squaresList[43])
 //println(Method.data.piece.position)
-//println(Method.get_mapa())
 
 
 
@@ -39,18 +39,17 @@ for(int i = 0; i < 8 ; i++) {
 
 
 
-//Method.addun(5,6)
-//println(Method.get_turn())
-//println(Method.res3)
 
 
 /*
+
+
 ratpack{
     
     handlers{
         get("tabla"){
             //render "hello dawn"
-            def json = new groovy.json.JsonBuilder(mapa1)
+            def json = new groovy.json.JsonBuilder(Method.get_mapa())
             render groovy.json.JsonOutput.prettyPrint(json.toString())
         }
 
