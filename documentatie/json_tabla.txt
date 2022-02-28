@@ -611,6 +611,6 @@
             "onBoard": true
         }
     ],
-    "score": "0 - 0",
+    "score": "white : 0 - black : 0",
     "turn": false
 }

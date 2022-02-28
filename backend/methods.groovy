@@ -4,37 +4,44 @@ package backend
 
 import java.sql.*; 
 import groovy.sql.Sql 
+import groovy.json.*
 
 
 class methods {    
     
-    def do_sql(String command){          
+    def get_sql(String command){          
         def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
          'testuser', 'test123', 'com.mysql.jdbc.Driver')
         def res = sql.rows(command) 
         sql.close()
         return res
+    }
 
+    def do_sql(String command){          
+        def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
+         'testuser', 'test123', 'com.mysql.jdbc.Driver')
+        def res = sql.execute(command) 
+        sql.close()
     }
 
     def get_squares(){
-      def squares = do_sql('SELECT * FROM tblSquares')  
+      def squares = get_sql('SELECT * FROM tblSquares')  
       return squares
 
     }
     
     def get_pieces(){
-      def pieces = do_sql('SELECT * FROM tblPieces')
+      def pieces = get_sql('SELECT * FROM tblPieces')
       return pieces
     }
 
     def get_scorew(){
-      def scorew = do_sql('SELECT scoreW FROM tblBoard')
+      def scorew = get_sql('SELECT scoreW FROM tblBoard')
       return scorew
     }
 
     def get_scoreb(){
-      def scoreb = do_sql('SELECT scoreB FROM tblBoard')
+      def scoreb = get_sql('SELECT scoreB FROM tblBoard')
       return scoreb
     }
 
@@ -44,24 +51,14 @@ class methods {
     }
 
     def get_turn(){
-      def turn = do_sql('SELECT turn FROM tblBoard')
+      def turn = get_sql('SELECT turn FROM tblBoard')
       return turn
     }
-
-     //def resSquares = get_squares() 
-     //def resPieces = get_pieces()
-     //def resScorew = get_scorew() 
-     //def resScoreb = get_scoreb()
-     //String res3 = "white : ${res3w[0].scoreW} - black : ${res3b[0].scoreB}"
-     //def res4 = get_turn()[0].turn
     
      def get_mapa(){
       def mapa = ["squaresList" : get_squares(), "piecesList" : get_pieces(), "score" : get_score(), "turn" : get_turn()[0].turn]
       return mapa
     }
-    
-
-     
 
     def get_matrix(){
       def vector = []
@@ -87,6 +84,7 @@ class methods {
     }
     
    /* is_valid_pawn(){
+
         
     }
   
@@ -105,34 +103,59 @@ class methods {
       }     
       return bool
     }
+     */
 
-    def bool = is_it_valid() //nu asa!! */
-
-    def bool = true
     
-    def do_the_move(){
-      def maxIdPieces = do_sql('SELECT MAX(id) FROM tblPieces')
-      def key = "MAX(id)"
-      def max = maxIdPieces[key][0]
-      if (bool){
-        //println max
-        
-        for(int i = 0; i <= max; i++){
-          println i
-          //if( ce_primesc_de_la_anca.id == get_pieces()[i].id){
-            //return get_pieces()[i]
-            //update    in bd          
-            //get_matrix()
-          //}
-        }
-      }
+    def ce_primesc_de_la_anca = '{"piece":{'+ 
+                '"id": 19,'+
+                '"pieceType": "pawn",'+
+                '"colour": "white",'+
+                '"position": 51,'+
+                '"onBoard": true'+
+            '},'+
+    '"new_pos": 43'+
+    '}'
+    def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
 
-      //else ??
- 
+    //UPDATE tblPieces SET position = data.new_pos WHERE id = data.piece.id;
+    //UPDATE tblSquares SET idPiece = NULL WHERE idSquare = data.piece.position;
+    //UPDATE tblSquares SET idPiece = data.piece.id WHERE idSquare = data.new_pos;
+
+
+
+    //is_it_valid()
+    //def bool = is_it_valid() //nu asa!!
+    //if (bool) do_the_move
+    //else ???
+
+
+    def do_the_move(){         
+        def pieces = get_pieces()    
+        for(int i = 0; i < pieces.size(); i++){          
+          if( data.piece.id == pieces[i].id){
+            do_sql('UPDATE tblSquares SET idPiece = NULL WHERE idSquare = ' + data.piece.position)
+            def squares = get_squares()
+            for(int j = 0; j < squares.size(); j++){          
+              if( data.new_pos == squares[j].idSquare){
+                if(squares[j].idPiece != null){ 
+                  //get_sql('SELECT * FROM tblPieces WHERE id = ' + squares[j].idPiece).color
+                  do_sql('DELETE FROM tblPieces WHERE id = '+ squares[j].idPiece)
+                  break
+                }
+              }
+            }
+            do_sql('UPDATE tblPieces SET position = ' + data.new_pos + ' WHERE id = ' + data.piece.id)
+            do_sql('UPDATE tblSquares SET idPiece = ' + data.piece.id + ' WHERE idSquare = ' + data.new_pos)
+            break      
+          }
+        }
     }
 
 
 
+
+
+    //pt reset do_sql(string(piese.sql))
 
 
 
