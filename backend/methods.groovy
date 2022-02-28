@@ -82,29 +82,79 @@ class methods {
 
       return m
     }
-    
-   /* is_valid_pawn(){
 
-        
+
+    //conv de la poz la i si j in fct()
+    //m[i][j] = vector[i*8+j]
+
+    def get_i_j()
+
+    /*
+    def is_valid_pawn(ci, cj, di, dj){
+      ci, cj
+      destini, dj,
+      newi, newj = 
+      bool -> modif
+      
+
+      return bool
+    }
+
+    def is_valid_rook(ci, cj, di, dj){
+
+      return bool
+    }
+    
+    def is_valid_knight(ci, cj, di, dj){
+
+      return bool
+    }
+
+    def is_valid_bishop(ci, cj, di, dj){
+
+      return bool
+    }
+
+    def is valid_queen(ci, cj, di, dj){
+
+      return bool
+    }
+
+    def is_valid_king(ci, cj, di, dj){
+
+      return bool
     }
   
     def is_it_valid(){
-      for(int i = 0; i < maxIdPiece; i++){
-        if( ce_primesc_de_la_anca.piesa.id == res2[i].id){
-          switch (res2[i].pieceType){
-          case "rook":
-          case "knight":
-          case "bishop":
-          case "queen":
-          case "king":
-          case "pawn":
-          }               
+      def bool = false
+      def pieces = get_pieces()
+      for(int i = 0; i < pieces.size(); i++){
+        if( ce_primesc_de_la_anca.piece.id == pieces[i].id){   //data.id
+          Integer i = ce_primesc_de_la_anca.piece.position / 8
+          Integer j = ce_primesc_de_la_anca.piece.position % 8
+          Integer x = ce_primesc_de_la_anca.new_pos / 8
+          Integer y = ce_primesc_de_la_anca.new_pos % 8
+          switch (pieces[i].pieceType){
+            case "rook": bool = is_valid_rook(i, j, x, y)
+            break
+            case "knight": bool = is_valid_knight(i, j, x, y)
+            break
+            case "bishop": bool = is_valid_bishop(i, j, x, y)
+            break
+            case "queen": bool = is_valid_queen(i, j, x, y)
+            break
+            case "king": bool = is_valid_king(i, j, x, y)
+            break
+            case "pawn": bool = is_valid_pawn(i, j, x, y)
+            break
+          }
+          break               
         }
       }     
       return bool
     }
-     */
-
+     
+*/
     
     def ce_primesc_de_la_anca = '{"piece":{'+ 
                 '"id": 19,'+
@@ -129,7 +179,7 @@ class methods {
     //else ???
 
 
-    def do_the_move(){         
+    def do_the_move(){         //turn
         def pieces = get_pieces()    
         for(int i = 0; i < pieces.size(); i++){          
           if( data.piece.id == pieces[i].id){

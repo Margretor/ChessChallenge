@@ -41,7 +41,7 @@ for(int i = 0; i < 8 ; i++) {
 
 
 
-/*
+
 
 
 ratpack{
@@ -62,6 +62,18 @@ ratpack{
           render "Hello world! ${postBody.toString()}"
         }    
         
+
+
+        post("piesa/something") {
+          getRequest().getBody().then({ data ->
+            String text = data.getText();
+            //reverse parse din text json in mapa
+          
+            println(text)
+            render(text)
+          })
+        }
+
         get("tabla/patratica/piese/:id"){
             render "astea sunt piesele"
         }
@@ -70,7 +82,6 @@ ratpack{
 }
 
 
-*/
 
 
 
