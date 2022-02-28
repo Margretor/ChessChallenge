@@ -42,7 +42,15 @@ function loadImages() {
 
 // Draw a chess piece
 function drawPiece(piece) {
-        chessContext.drawImage(piece,0,0);
+
+        var x = piece.position%8;
+        var y = Math.ceil(piece.position/8);
+        var width = 60;
+        var height = 30;
+        var posx =  75 - width / 2 + 75*x;
+        var posy =  73 - height  + 75 *y;
+
+        chessContext.drawImage(piece,posx, posy, width, height);
 }
 
 // Draw the chess board
