@@ -202,28 +202,214 @@ class methods {
       return bool
     }
 
-    def is_valid_rook(ci, cj, di, dj, data){
+    def is_valid_rook(ci, cj, di, dj, data, mat){
 
       return bool
     }
     
-    def is_valid_knight(ci, cj, di, dj, data){
+    def is_valid_knight(ci, cj, di, dj, data, mat){
 
       return bool
     }
 
-    def is_valid_bishop(ci, cj, di, dj, data){
+    def is_valid_bishop(ci, cj, di, dj, data, mat){
 
       return bool
     }
 
-    def is valid_queen(ci, cj, di, dj, data){
+    def is valid_queen(ci, cj, di, dj, data, mat){
 
       return bool
     }
 
-    def is_valid_king(ci, cj, di, dj, data){
+    def is_valid_king(ci, cj, di, dj, data, mat){
+      def bool = false
+      //pt alb:
+      if (data.piece.color == "white") {
+          newi = ci - 1   //in fata
+          newj = cj 
+          if ((newi == di) && (newj == dj)) {
+            if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+              bool = true
+            }
+            else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+              bool = false
+            }
+            else bool = true
+          }
+          else {
+            newi = ci - 1   //diagonala dreapta in fata
+            newj = cj + 1                
+            if ((newi == di) && (newj == dj)) {
+              if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+                bool = true
+              }
+              else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+                bool = false
+              }
+              else bool = true
+            }
+            else {
+              newi = ci   //dreapta   
+              newj = cj + 1                 
+              if ((newi == di) && (newj == dj)) {
+                if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+                  bool = true
+                }
+                else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+                  bool = false
+                }
+                else bool = true
+              }
+              else {
+                newi = ci + 1  //diagonala dreapta in spate
+                newj = cj + 1                
+                if ((newi == di) && (newj == dj)) {
+                  if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+                    bool = true
+                  }
+                  else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+                    bool = false
+                  }
+                  else bool = true
+                }
+                else {
+                  newi = ci + 1  //in spate   
+                  newj = cj                  
+                  if ((newi == di) && (newj == dj)) {
+                    if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+                      bool = true
+                    }
+                    else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+                      bool = false
+                    }
+                    else bool = true
+                  }
+                  else {
+                    newi = ci   //in stanga   
+                    newj = cj - 1                 
+                    if ((newi == di) && (newj == dj)) {
+                      if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+                        bool = true
+                      }
+                      else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+                        bool = false
+                      }
+                      else bool = true
+                    }
+                    else {
+                      newi = ci - 1  //diagonala dreapta in fata
+                      newj = cj - 1                 
+                      if ((newi == di) && (newj == dj)) {
+                        if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
+                          bool = true
+                        }
+                        else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'white')){
+                          bool = false
+                        }
+                        else bool = true
+                      }                   
+                    } 
+                  } 
+                } 
+              }  
+            }    
+          }     
+      }
 
+
+      //pt negru:
+      if (data.piece.color == "black") {
+          newi = ci - 1   //in spate
+          newj = cj 
+          if ((newi == di) && (newj == dj))   {
+            if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                bool = true
+              }
+              else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                bool = false
+              }
+              else bool = true
+          }
+          else {
+            newi = ci - 1   //diagonala dreapta in spate
+            newj = cj + 1                
+            if ((newi == di) && (newj == dj)) {
+              if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                bool = true
+              }
+              else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                bool = false
+              }
+              else bool = true
+            }
+            else {
+              newi = ci   //dreapta   
+              newj = cj + 1                 
+              if ((newi == di) && (newj == dj)) {
+                if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                  bool = true
+                }
+                else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                  bool = false
+                }
+                else bool = true
+              }
+              else {
+                newi = ci + 1  //diagonala dreapta in fata
+                newj = cj + 1                
+                if ((newi == di) && (newj == dj)) {
+                  if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                    bool = true
+                  }
+                  else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                    bool = false
+                  }
+                  else bool = true
+                }
+                else {
+                  newi = ci + 1  //in fata   
+                  newj = cj                  
+                  if ((newi == di) && (newj == dj)) {
+                    if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                      bool = true
+                    }
+                    else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                      bool = false
+                    }
+                    else bool = true
+                  }
+                  else {
+                    newi = ci   //in stanga   
+                    newj = cj - 1                 
+                    if ((newi == di) && (newj == dj)) {
+                      if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                        bool = true
+                      }
+                      else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                        bool = false
+                      }
+                      else bool = true
+                    }
+                    else {
+                      newi = ci - 1  //diagonala dreapta in spate
+                      newj = cj - 1                 
+                      if ((newi == di) && (newj == dj)) {
+                        if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'white')){
+                          bool = true
+                        }
+                        else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')){
+                          bool = false
+                        }
+                        else bool = true
+                      }                   
+                    } 
+                  } 
+                } 
+              }  
+            }    
+          }     
+      }
 
       return bool
     }
@@ -234,7 +420,8 @@ class methods {
       def pieces = get_pieces()
       for(int i = 0; i < pieces.size(); i++){
         if( data.piece.id == pieces[i].id){   //data = ce primesc de la anca
-          Integer i = data.piece.position / 8
+        //x, y sa apartina 0, 7
+          Integer i = data.piece.position / 8   
           Integer j = data.piece.position % 8
           Integer x = data.new_pos / 8
           Integer y = data.new_pos % 8
