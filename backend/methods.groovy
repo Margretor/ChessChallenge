@@ -90,26 +90,43 @@ class methods {
     def get_i_j()
 
     
-    def is_valid_pawn(ci, cj, di, dj){
-      def bool
+    def is_valid_pawn(ci, cj, di, dj, data){
+      def bool = false
+      def squares = get_squares()
+      def pieces = get_pieces()
       //ci, cj
       //destini, dj,
       if (ce_primesc_de_la_anca.piece.color == "white") {
-        if(pozitie iniriala){
-          newi = ci - 1   //poate fi si ci - 2
-          newj = cj
-
+        if(pozitie initiala){
+          newi = ci - 1   //newi1
+          newj = cj       //newj1
+          //newi poate fi si ci - 2  = newi2
+          if (newi= di && newj =dj )&& && (mat[newi][newj] = -1) {
+            bool = true
+          }
+          else {
+          newi = ci - 2   //newi1
+          newj = cj       
+            if (newi= di && newj =dj ) && (mat[newi][newj] != -1) && (pieces[mat[newi][newj]].color == 'black')  {
+              bool = true
+            }
+          }
+          
         }
-        if(piesa neagra pe diagonala){
-          newi = ci - 1
-          newj = cj + 1  //mai poate fi si cj - 1
-
+        
+        else if(piesa neagra pe diagonala){
+          newi = ci - 1   //
+          newj = cj + 1  //mai poate fi si cj - 1 = newj0
+           if (newi= di && newj =dj ) && (mat[newi][newj] = -1) && (mat[newi+1][newj] = -1) {
+              bool = true
+            }
         }
-        newi = ci - 1
-        newj = cj
+        else{
+        newi = ci - 1  //newi1
+        newj = cj   }    //newj1
 
       }
-       if (ce_primesc_de_la_anca.piece.color == "black") {         
+       if (ce_primesc_de_la_anca.piece.color == "black")  {         
         if(pozitie iniriala){
           newi = ci + 1   //poate fi si ci + 2
           newj = cj
@@ -124,16 +141,34 @@ class methods {
         newj = cj
 
       }
-      if((newi == di) && (newj == dj)){
+      if((newi == di) /*||newi1 ==di)||...*/ && (newj == dj)){ //|| newi0, newj0
         bool = true
       }
-       //are obstacole?? 
+       //if bool => are obstacole()?? 
       //bool -> modif
-      
+      //if bool => verific culoarea daca am piesa pe poz dorita
+
+      /*
+      if(bool){
+        for( int k = 0; k < squares.size(); k++){
+          if(squares[k].position == ce_primesc_de_la_anca.new_pos){  //gasesc patratica pe care vr sa mut piesa
+            if((squares[k].position == n1) || (squares[k].position == n2)){
+              if(squares[n2].idPiece == NULL)
+            }
+            if((squares[k].position == n3) || (squares[k].position == n4)){
+
+            }
+            else{
+              bool = false
+              break
+            }
+          }
+        }
+      }*/
 
       return bool
     }
-/*
+
     def is_valid_rook(ci, cj, di, dj){
 
       return bool
@@ -187,8 +222,8 @@ class methods {
       }     
       return bool
     }
-     
-*/
+    
+
     
     def ce_primesc_de_la_anca = '{"piece":{'+ 
                 '"id": 19,'+
