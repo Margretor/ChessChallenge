@@ -87,63 +87,101 @@ class methods {
     //conv de la poz la i si j in fct()
     //m[i][j] = vector[i*8+j]
 
-    def get_i_j()
+    //def get_i_j()
 
     
-    def is_valid_pawn(ci, cj, di, dj, data){
+    def is_valid_pawn(ci, cj, di, dj, data){ 
       def bool = false
       def squares = get_squares()
       def pieces = get_pieces()
-      //ci, cj
-      //destini, dj,
-      if (ce_primesc_de_la_anca.piece.color == "white") {
-        if(pozitie initiala){
-          newi = ci - 1   //newi1
-          newj = cj       //newj1
-          //newi poate fi si ci - 2  = newi2
-          if (newi= di && newj =dj )&& && (mat[newi][newj] = -1) {
+      //pt alb :
+      if (data.piece.color == "white") {
+        if((data.position == 48) || (data.position == 49) || (data.position == 50) || (data.position == 51) || (data.position == 52) || (data.position == 53) || (data.position == 54) || (data.position == 55)) {
+          newi = ci - 1   
+          newj = cj       
+          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] == -1)) {
             bool = true
           }
           else {
-          newi = ci - 2   //newi1
-          newj = cj       
-            if (newi= di && newj =dj ) && (mat[newi][newj] != -1) && (pieces[mat[newi][newj]].color == 'black')  {
+            newi = ci - 2   
+            newj = cj                 
+            if (((newi == di) && (newj == dj)) && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
               bool = true
             }
+          }        
+        }
+        //daca pe diagonala dreapta avem piesa neagra
+        else if((mat[ci-1][cj+1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj+1]).color == 'black')){
+          newi = ci - 1   
+          newj = cj + 1  
+          //if( mat[newi][newj] != 1) {
+          //  index = mat[newi][newj]
+          //} e necesar??
+          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'black'))  { 
+            bool = true
           }
-          
         }
-        
-        else if(piesa neagra pe diagonala){
-          newi = ci - 1   //
-          newj = cj + 1  //mai poate fi si cj - 1 = newj0
-           if (newi= di && newj =dj ) && (mat[newi][newj] = -1) && (mat[newi+1][newj] = -1) {
+        //daca pe diagonala stanga avem piesa neagra
+        else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')) {
+          newi = ci - 1   
+          newj = cj - 1 
+          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'black'))  {
+            bool = true
+          } 
+        }
+
+        else{
+          newi = ci - 1 
+          newj = cj     
+          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] = -1)) {
+            bool = true
+          }
+        }
+      }
+      //pt negru:
+      if (data.piece.color == "black") {  //else
+        if((data.position == 8) || (data.position == 9) || (data.position == 10) || (data.position == 11) || (data.position == 12) || (data.position == 13) || (data.position == 14) || (data.position == 15)) {
+          newi = ci + 1   
+          newj = cj       
+          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] == -1)) {
+            bool = true
+          }
+          else {
+            newi = ci + 2   
+            newj = cj                 
+            if (((newi == di) && (newj == dj)) && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
               bool = true
             }
+          }        
         }
+        //daca pe diagonala stanga avem piesa alba
+        else if((mat[ci+1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci+1][cj-1]).color == 'White')){
+          newi = ci + 1   
+          newj = cj - 1  
+          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'white'))  { 
+            bool = true
+          }
+        }
+        //daca pe diagonala dreapta avem piesa alba
+        else if((mat[ci+1][cj+1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci+1][cj+1]).color == 'white')) {
+          newi = ci + 1   
+          newj = cj + 1 
+          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'white'))  { 
+            bool = true
+          } 
+        }
+
         else{
-        newi = ci - 1  //newi1
-        newj = cj   }    //newj1
-
-      }
-       if (ce_primesc_de_la_anca.piece.color == "black")  {         
-        if(pozitie iniriala){
-          newi = ci + 1   //poate fi si ci + 2
-          newj = cj
-
+          newi = ci + 1 
+          newj = cj     
+          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] = -1)) {
+            bool = true
+          }
         }
-        if(piesa alba pe diagonala){
-          newi = ci + 1
-          newj = cj + 1  //mai poate fi si cj - 1
-
-        }
-        newi = ci + 1
-        newj = cj
-
       }
-      if((newi == di) /*||newi1 ==di)||...*/ && (newj == dj)){ //|| newi0, newj0
-        bool = true
-      }
+
+       
+
        //if bool => are obstacole()?? 
       //bool -> modif
       //if bool => verific culoarea daca am piesa pe poz dorita
@@ -194,27 +232,28 @@ class methods {
       return bool
     }
   
-    def is_it_valid(){
+    def is_it_valid(data){
+      get_matrix() //nu trb = mat sau in fiecare is_valid sa apelez get_matrix() in loc sa scriu mat?
       def bool = false
       def pieces = get_pieces()
       for(int i = 0; i < pieces.size(); i++){
-        if( ce_primesc_de_la_anca.piece.id == pieces[i].id){   //data.id
-          Integer i = ce_primesc_de_la_anca.piece.position / 8
-          Integer j = ce_primesc_de_la_anca.piece.position % 8
-          Integer x = ce_primesc_de_la_anca.new_pos / 8
-          Integer y = ce_primesc_de_la_anca.new_pos % 8
+        if( data.piece.id == pieces[i].id){   //data = ce primesc de la anca
+          Integer i = data.piece.position / 8
+          Integer j = data.piece.position % 8
+          Integer x = data.new_pos / 8
+          Integer y = data.new_pos % 8
           switch (pieces[i].pieceType){
-            case "rook": bool = is_valid_rook(i, j, x, y)
+            case "rook": bool = is_valid_rook(i, j, x, y, data)
             break
-            case "knight": bool = is_valid_knight(i, j, x, y)
+            case "knight": bool = is_valid_knight(i, j, x, y, data)
             break
-            case "bishop": bool = is_valid_bishop(i, j, x, y)
+            case "bishop": bool = is_valid_bishop(i, j, x, y, data)
             break
-            case "queen": bool = is_valid_queen(i, j, x, y)
+            case "queen": bool = is_valid_queen(i, j, x, y, data)
             break
-            case "king": bool = is_valid_king(i, j, x, y)
+            case "king": bool = is_valid_king(i, j, x, y, data)
             break
-            case "pawn": bool = is_valid_pawn(i, j, x, y)
+            case "pawn": bool = is_valid_pawn(i, j, x, y, data)
             break
           }
           break               
@@ -236,9 +275,6 @@ class methods {
     '}'
     def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
 
-    //UPDATE tblPieces SET position = data.new_pos WHERE id = data.piece.id;
-    //UPDATE tblSquares SET idPiece = NULL WHERE idSquare = data.piece.position;
-    //UPDATE tblSquares SET idPiece = data.piece.id WHERE idSquare = data.new_pos;
 
 
 
@@ -248,7 +284,7 @@ class methods {
     //else ???
 
 
-    def do_the_move(){         //turn  //do_the_move(json_din_post == ce primesc de la anca)
+    def do_the_move(data){         //turn  //do_the_move(json_din_post == ce primesc de la anca)
         def pieces = get_pieces()    
         for(int i = 0; i < pieces.size(); i++){          
           if( data.piece.id == pieces[i].id){
