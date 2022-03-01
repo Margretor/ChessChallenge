@@ -84,16 +84,14 @@ class methods {
     }
 
 
-    //conv de la poz la i si j in fct()
-    //m[i][j] = vector[i*8+j]
 
-    //def get_i_j()
 
     
-    def is_valid_pawn(ci, cj, di, dj, data){ 
+    def is_valid_pawn(ci, cj, di, dj, data, mat){ 
       def bool = false
-      def squares = get_squares()
-      def pieces = get_pieces()
+      
+      //def squares = get_squares()
+      //def pieces = get_pieces()
       //pt alb :
       if (data.piece.color == "white") {
         if((data.position == 48) || (data.position == 49) || (data.position == 50) || (data.position == 51) || (data.position == 52) || (data.position == 53) || (data.position == 54) || (data.position == 55)) {
@@ -114,10 +112,7 @@ class methods {
         else if((mat[ci-1][cj+1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj+1]).color == 'black')){
           newi = ci - 1   
           newj = cj + 1  
-          //if( mat[newi][newj] != 1) {
-          //  index = mat[newi][newj]
-          //} e necesar??
-          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'black'))  { 
+          if ((newi == di) && (newj == dj))  { 
             bool = true
           }
         }
@@ -207,33 +202,34 @@ class methods {
       return bool
     }
 
-    def is_valid_rook(ci, cj, di, dj){
+    def is_valid_rook(ci, cj, di, dj, data){
 
       return bool
     }
     
-    def is_valid_knight(ci, cj, di, dj){
+    def is_valid_knight(ci, cj, di, dj, data){
 
       return bool
     }
 
-    def is_valid_bishop(ci, cj, di, dj){
+    def is_valid_bishop(ci, cj, di, dj, data){
 
       return bool
     }
 
-    def is valid_queen(ci, cj, di, dj){
+    def is valid_queen(ci, cj, di, dj, data){
 
       return bool
     }
 
-    def is_valid_king(ci, cj, di, dj){
+    def is_valid_king(ci, cj, di, dj, data){
+
 
       return bool
     }
   
     def is_it_valid(data){
-      get_matrix() //nu trb = mat sau in fiecare is_valid sa apelez get_matrix() in loc sa scriu mat?
+      def mat = get_matrix()
       def bool = false
       def pieces = get_pieces()
       for(int i = 0; i < pieces.size(); i++){
@@ -243,17 +239,17 @@ class methods {
           Integer x = data.new_pos / 8
           Integer y = data.new_pos % 8
           switch (pieces[i].pieceType){
-            case "rook": bool = is_valid_rook(i, j, x, y, data)
+            case "rook": bool = is_valid_rook(i, j, x, y, data, mat)
             break
-            case "knight": bool = is_valid_knight(i, j, x, y, data)
+            case "knight": bool = is_valid_knight(i, j, x, y, data, mat)
             break
-            case "bishop": bool = is_valid_bishop(i, j, x, y, data)
+            case "bishop": bool = is_valid_bishop(i, j, x, y, data, mat)
             break
-            case "queen": bool = is_valid_queen(i, j, x, y, data)
+            case "queen": bool = is_valid_queen(i, j, x, y, data, mat)
             break
-            case "king": bool = is_valid_king(i, j, x, y, data)
+            case "king": bool = is_valid_king(i, j, x, y, data, mat)
             break
-            case "pawn": bool = is_valid_pawn(i, j, x, y, data)
+            case "pawn": bool = is_valid_pawn(i, j, x, y, data, mat)
             break
           }
           break               
@@ -294,7 +290,7 @@ class methods {
               if( data.new_pos == squares[j].idSquare){
                 if(squares[j].idPiece != null){ 
                   //get_sql('SELECT * FROM tblPieces WHERE id = ' + squares[j].idPiece).color
-                  do_sql('DELETE FROM tblPieces WHERE id = '+ squares[j].idPiece)
+                  do_sql('DELETE FROM tblPieces WHERE id = '+ squares[j].idPiece)  //scor
                   break
                 }
               }
