@@ -1,0 +1,141 @@
+<html>
+
+<body>
+
+<script>
+let m = [];
+let s = 100;
+let colors = ['#333333', '#dddddd'];
+let colors_pieces = ['#dd0000', '#0000bb']
+
+function loadImages() {
+    imgPawn.src = "../img/blackPawn.png";
+    imgRook.src = "../img/blackRook.png";
+    imgKnight.src = "../img/blackKnight.png";
+    imgBishop.src = "../img/blackBishop.png";
+    imgQueen.src = "../img/blackQueen.png";
+    imgKing.src = "../img/blackKing.png";
+    imgPawnW.src = "../img/whitePawn.png";
+    imgRookW.src = "../img/whiteRook.png";
+    imgKnightW.src = "../img/whiteKnight.png"
+    imgBishopW.src = "../img/whiteBishop.png";
+    imgQueenW.src = "../img/whiteQueen.png";
+    imgKingW.src = "../img/whiteKing.png";
+}
+
+//fct de refresh la pagina, apelez get pe server(sa primesc noul json)
+//sau unde fac post-ul 
+
+let draw_square = (x, y, color) => {
+  let e = document.createElement("div");
+  e.id = 'sq-' + x + '-' + y;
+  e.style.width = s + 'px';
+  e.style.height = s + 'px';
+  e.style.background = color;
+
+  e.style.position = 'absolute';
+  e.style.left = (x * s) + "px";
+  e.style.top = (y * s) + "px";
+
+  document.body.appendChild(e);
+
+  return e;
+}
+
+let draw_piece = (x, y, color, imggg_src) => {
+  let e = document.createElement("img");
+  e.id = 'piece-' + x + '-' + y;
+  e.style.width = (s / 2) + 'px';
+  e.style.height = (s / 2) + 'px';
+  e.style.background = color;
+  E.src = “path/to/img.jpg”
+
+  e.style.position = 'absolute';
+  e.style.left = (x * s + s / 4) + "px";
+  e.style.top = (y * s + s / 4) + "px";
+
+  e.addEventListener('mousedown', start_dd);
+  e.addEventListener('mouseup', stop_dd);
+
+  document.body.appendChild(e);
+
+  return e;
+}
+
+let dd_pending = false;
+let dd_el = null;
+let dd_offset_x;
+let dd_offset_y;
+
+let start_dd = (e) => { //??alecu aici trb sa fac rost de piesa??
+    //apelez endpoint ul de validare, apoi cel de move, apoi fac GET ca sa updatez starea jocului
+    //apelez api ul
+    //verific daca e zituatia Z
+  console.log('start', e);
+  let tag = e.path[0];
+  if (tag.id && tag.id.indexOf('piece-') !== -1) {
+    dd_pending = true;
+    dd_el = e.path[0];
+
+    dd_el.style.zIndex = '999';
+
+    dd_offset_x = e.x - dd_el.offsetLeft;
+    dd_offset_y = e.y - dd_el.offsetTop;
+
+    console.log(dd_el.offsetLeft, dd_el.offsetTop, e.x, e.y);
+
+  }
+}
+
+let stop_dd = (e) => {
+  console.log('stop', e);
+
+  dd_pending = false;
+  dd_el.style.zIndex = '100';
+}
+
+window.addEventListener('mouseup', stop_dd);
+
+var during_dd = (e) => {
+  if (!dd_pending) return ;
+
+  let x = e.pageX;
+  let y = e.pageY;
+
+//  console.log(x, y);
+
+  dd_el.style.left = (x - dd_offset_x) + 'px';
+  dd_el.style.top = (y - dd_offset_y) + 'px';
+}
+
+window.onload = function() {
+  this.addEventListener('mousemove', during_dd);
+}
+
+for (let i = 0; i < 8; i++) {
+  m[i] = []
+  for (let j = 0; j < 8; j++) {
+    m[i][j] = draw_square(i, j, colors[(i + j) % 2]);
+  }
+}
+
+/*for (let i = 0; i < 2; i++) {
+  for (let j = 0; j < 8; j++) {
+    e = draw_piece(j, i, colors_pieces[(i + j) % 2]);
+  }
+}*/
+
+for (let i = 6; i < 8; i++) {  //modific pt toate piesele parsand json ul ->am un switch dupa tipul de piesa + culoare + coord => apelez draw_piece()
+  for (let j = 0; j < 8; j++) {
+    e = draw_piece(j, i, colors_pieces[(i + j) % 2]);
+  }
+}
+
+// console.log(m);
+
+</script>
+
+</body>
+
+</html>
+

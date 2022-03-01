@@ -97,13 +97,13 @@ class methods {
         if((data.position == 48) || (data.position == 49) || (data.position == 50) || (data.position == 51) || (data.position == 52) || (data.position == 53) || (data.position == 54) || (data.position == 55)) {
           newi = ci - 1   
           newj = cj       
-          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] == -1)) {
+          if (((newi == di) && (newj == dj))  && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  &&  (mat[newi][newj] == -1)) {
             bool = true
           }
           else {
             newi = ci - 2   
             newj = cj                 
-            if (((newi == di) && (newj == dj)) && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
+            if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
               bool = true
             }
           }        
@@ -112,7 +112,7 @@ class methods {
         else if((mat[ci-1][cj+1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj+1]).color == 'black')){
           newi = ci - 1   
           newj = cj + 1  
-          if ((newi == di) && (newj == dj))  { 
+          if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8) )  { 
             bool = true
           }
         }
@@ -120,7 +120,7 @@ class methods {
         else if((mat[ci-1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj-1]).color == 'black')) {
           newi = ci - 1   
           newj = cj - 1 
-          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'black'))  {
+          if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8))  {
             bool = true
           } 
         }
@@ -128,7 +128,7 @@ class methods {
         else{
           newi = ci - 1 
           newj = cj     
-          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] = -1)) {
+          if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  &&  (mat[newi][newj] = -1) ) {
             bool = true
           }
         }
@@ -138,13 +138,13 @@ class methods {
         if((data.position == 8) || (data.position == 9) || (data.position == 10) || (data.position == 11) || (data.position == 12) || (data.position == 13) || (data.position == 14) || (data.position == 15)) {
           newi = ci + 1   
           newj = cj       
-          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] == -1)) {
+          if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  &&   (mat[newi][newj] == -1)) {
             bool = true
           }
           else {
             newi = ci + 2   
             newj = cj                 
-            if (((newi == di) && (newj == dj)) && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
+            if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8) && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
               bool = true
             }
           }        
@@ -153,7 +153,7 @@ class methods {
         else if((mat[ci+1][cj-1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci+1][cj-1]).color == 'White')){
           newi = ci + 1   
           newj = cj - 1  
-          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'white'))  { 
+          if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8))  { 
             bool = true
           }
         }
@@ -161,7 +161,7 @@ class methods {
         else if((mat[ci+1][cj+1] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci+1][cj+1]).color == 'white')) {
           newi = ci + 1   
           newj = cj + 1 
-          if (((newi == di) && (newj == dj))/**/ && (mat[newi][newj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[newi][newj]).color == 'white'))  { 
+          if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8))  { 
             bool = true
           } 
         }
@@ -169,7 +169,7 @@ class methods {
         else{
           newi = ci + 1 
           newj = cj     
-          if (((newi == di) && (newj == dj))  &&  (mat[newi][newj] = -1)) {
+          if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  &&  (mat[newi][newj] = -1)) {
             bool = true
           }
         }
@@ -208,6 +208,7 @@ class methods {
     }
     
     def is_valid_knight(ci, cj, di, dj, data, mat){
+      def bool
 
       return bool
     }
@@ -218,7 +219,10 @@ class methods {
     }
 
     def is valid_queen(ci, cj, di, dj, data, mat){
-
+      def bool = false
+      if((is_valid_rook(ci, cj, di, dj, data, mat) == true) || (is_valid_bishop(ci, cj, di, dj, data, mat) == true)){
+        bool = true
+      }     
       return bool
     }
 
@@ -228,7 +232,7 @@ class methods {
       if (data.piece.color == "white") {
           newi = ci - 1   //in fata
           newj = cj 
-          if ((newi == di) && (newj == dj)) {
+          if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
             if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
               bool = true
             }
@@ -240,7 +244,7 @@ class methods {
           else {
             newi = ci - 1   //diagonala dreapta in fata
             newj = cj + 1                
-            if ((newi == di) && (newj == dj)) {
+            if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
               if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
                 bool = true
               }
@@ -252,7 +256,7 @@ class methods {
             else {
               newi = ci   //dreapta   
               newj = cj + 1                 
-              if ((newi == di) && (newj == dj)) {
+              if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
                 if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
                   bool = true
                 }
@@ -264,7 +268,7 @@ class methods {
               else {
                 newi = ci + 1  //diagonala dreapta in spate
                 newj = cj + 1                
-                if ((newi == di) && (newj == dj)) {
+                if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
                   if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
                     bool = true
                   }
@@ -276,7 +280,7 @@ class methods {
                 else {
                   newi = ci + 1  //in spate   
                   newj = cj                  
-                  if ((newi == di) && (newj == dj)) {
+                  if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
                     if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
                       bool = true
                     }
@@ -288,7 +292,7 @@ class methods {
                   else {
                     newi = ci   //in stanga   
                     newj = cj - 1                 
-                    if ((newi == di) && (newj == dj)) {
+                    if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
                       if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
                         bool = true
                       }
@@ -300,7 +304,7 @@ class methods {
                     else {
                       newi = ci - 1  //diagonala dreapta in fata
                       newj = cj - 1                 
-                      if ((newi == di) && (newj == dj)) {
+                      if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
                         if((mat[ci-1][cj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[ci-1][cj]).color == 'black')){
                           bool = true
                         }

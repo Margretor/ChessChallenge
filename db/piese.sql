@@ -25,7 +25,8 @@ DESCRIBE tblSquares;
 CREATE TABLE tblBoard (
 	scoreW INT,
 	scoreB INT,
-	turn   TINYINT(1)
+	turn   TINYINT(1),
+	in_sah TINYINT(1)
 );
 DESCRIBE tblBoard;
 
@@ -73,7 +74,7 @@ INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "whit
 SELECT * FROM tblSquares;
 
 
-INSERT INTO tblBoard VALUES( 0, 0, 0);
+INSERT INTO tblBoard VALUES( 0, 0, 0, 0);
 
 SELECT * FROM tblBoard;
 
