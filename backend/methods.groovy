@@ -9,6 +9,18 @@ import groovy.json.*
 
 class methods {    
     
+        
+    def ce_primesc_de_la_anca = '{"piece":{'+ 
+                '"id": 4,'+
+                '"pieceType": "king",'+
+                '"colour": "black",'+
+                '"position": 20,'+
+                '"onBoard": true'+
+            '},'+
+    '"new_pos": 1'+    // 50, 51, 52, 44, 42, 36, 35, 34
+    '}'
+    def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
+
     def get_sql(String command){          
         def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
          'testuser', 'test123', 'com.mysql.jdbc.Driver')
@@ -86,12 +98,12 @@ class methods {
     def col(){
       def mat = get_matrix()
       def bool = false
-      if(get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[1][3]).colour[0] == 'black'){
+      if(get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[6][3]).colour[0] == 'white'){
         bool = true
       }
       return bool
     }
-
+    
 
     
     def is_valid_pawn(ci, cj, di, dj, data, mat){ 
@@ -100,7 +112,7 @@ class methods {
       def newj
       
       //pt alb :
-      if (data.piece.color == "white") {
+      if (data.piece.colour == "white") {
         if((data.position == 48) || (data.position == 49) || (data.position == 50) || (data.position == 51) || (data.position == 52) || (data.position == 53) || (data.position == 54) || (data.position == 55)) {
           newi = ci - 1   
           newj = cj       
@@ -228,11 +240,13 @@ class methods {
 
       return bool
     }
-    
+    */
     def is_valid_knight(ci, cj, di, dj, data, mat){
       def bool = false
+      def newi
+      def newj
       //pt alb:
-      if (data.piece.color == "white") {
+      if (data.piece.colour == "white") {
           newi = ci - 2   
           newj = cj + 1
           if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
@@ -444,6 +458,7 @@ class methods {
       }
       return bool
     }
+    /*
 
     def is_valid_bishop(ci, cj, di, dj, data, mat){
       def bool = false
@@ -528,12 +543,14 @@ class methods {
         bool = true
       }     
       return bool
-    }
+    }*/
 
     def is_valid_king(ci, cj, di, dj, data, mat){
       def bool = false
+      def newi
+      def newj
       //pt alb:
-      if (data.piece.color == "white") {
+      if (data.piece.colour == "white") {
           newi = ci - 1   //in fata
           newj = cj 
           if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)) {
@@ -746,7 +763,7 @@ class methods {
 
       return bool
     }
-    */
+    
   
   
     def is_it_valid(data){
@@ -762,15 +779,15 @@ class methods {
           Integer y = data.new_pos % 8
           switch (pieces[i].pieceType){
            /* case "rook": bool = is_valid_rook(i, j, x, y, data, mat)
-            break
+            break*/
             case "knight": bool = is_valid_knight(i, j, x, y, data, mat)
-            break
+            break/*
             case "bishop": bool = is_valid_bishop(i, j, x, y, data, mat)
             break
             case "queen": bool = is_valid_queen(i, j, x, y, data, mat)
-            break
-            case "king": bool = is_valid_king(i, j, x, y, data, mat)
             break*/
+            case "king": bool = is_valid_king(i, j, x, y, data, mat)
+            break
             case "pawn": bool = is_valid_pawn(i, j, x, y, data, mat)
             break
           }
@@ -781,17 +798,7 @@ class methods {
     }
     
 
-    
-    def ce_primesc_de_la_anca = '{"piece":{'+ 
-                '"id": 19,'+
-                '"pieceType": "pawn",'+
-                '"colour": "white",'+
-                '"position": 51,'+
-                '"onBoard": true'+
-            '},'+
-    '"new_pos": 43'+
-    '}'
-    def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
+
 
 
 

@@ -30,8 +30,8 @@ def data = Method.data
   def mat = Method.get_matrix()
 
 //print the matrix of idSquares:
-
-/*for(int i = 0; i < 8 ; i++) {
+/*
+for(int i = 0; i < 8 ; i++) {
         
         for(int j = 0; j < 8; j++) {
           
@@ -39,10 +39,17 @@ def data = Method.data
           
         }
         println();
-}*/
+}
+*/
 println(data)
 //println(Method.col())
-println(Method.is_valid_pawn(ii, jj, x, y, data, mat))
+//println(ii)
+//println(jj)
+//println(x)
+//println(y)
+
+println(Method.is_valid_king(ii, jj, x, y, data, mat))
+//Method.is_valid_pawn(ii, jj, x, y, data, mat)
 //println(Method.is_it_valid(data))
 
 //if(Method.is_it_valid(data) == true){

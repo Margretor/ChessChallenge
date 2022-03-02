@@ -54,11 +54,11 @@ SELECT * FROM tblPieces;
 
 
 INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "white", 2, 2), 
-(3,"black", 3, 3), (4, "white", 4, 4), (5,"black", 5, 5), (6, "white", 6, 6),
+(3,"black", 3, 3), (4, "white", 4, NULL), (5,"black", 5, 5), (6, "white", 6, 6),
 (7, "black", 7, 7), ( 8,"black", 8, 8), (9,"white", 9, 9), (10, "black", 10, 10), 
 (11,"white", 11, 11), (12, "black", 12, 12), (13,"white", 13, 13), (14, "black", 14, 14), 
 (15, "white", 15, 15), (16, "white", 16, NULL), (17, "black", 17, NULL), (18, "white", 18, NULL),
-(19, "black", 19, NULL), (20, "white", 20, NULL), (21,"black", 21, NULL), (22, "white", 22, NULL),
+(19, "black", 19, NULL), (20, "white", 20, 4), (21,"black", 21, NULL), (22, "white", 22, NULL),
 (23, "black", 23, NULL), (24, "black", 24, NULL), (25, "white", 25, NULL), (26, "black", 26, NULL), 
 (27, "white", 27, NULL), (28, "black", 28, NULL), (29, "white", 29, NULL), (30, "black", 30, NULL),
 (31, "white", 31, NULL), (32, "white", 32, NULL), (33, "black", 33, NULL), (34, "white", 34, NULL), 
