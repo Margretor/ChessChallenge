@@ -1,16 +1,16 @@
 def ci = 3
 def cj = 3
-def di = 0
-def dj = 0
+////def di = 3
+//def dj = 3
 def nr = 0
 def j = cj
 def bool = false
 Integer ii  
 Integer jj 
-def v1 = []  //stanga sus
-def v2 = []  //dreapta jos
-def v3 = []  //dreapta sus
-def v4 = []  //stanga jos
+def v1 = []  //sus
+def v2 = []  //jos
+def v3 = []  //dreapta
+def v4 = []  //stanga
 def pos = di * 8 + dj
 
 
@@ -50,61 +50,17 @@ for(int i = ci; i<8; i++){
         nr++
     }
 }
-println(v1[1]%8)
-
-for(int k = 1; k<v1.size; k++){
-    if(pos == v1[k]){
-       -- if culoare black
-       --else if white
-       else bool =true
-        bool = true
-        break
-    }
-}
-
-if(bool == true){
-    for(int n = 1; n <v1.size-1; n++){
-        ii = v1[n] / 8   
-        jj = v1[n] % 8
-        if(mat[ii][jj] != -1){
-           bool = false
-        }     
-        } 
-    } 
-
-if(bool = false){
-    for(int k = 1; k<v1.size; k++){
-    if(pos == v2[k]){
-       -- if culoare black
-       --else if white
-       else bool =true
-        bool = true
-        break
-    }
-}
-
-if(bool == true){
-    for(int n = 1; n <v2.size-1; n++){
-        ii = v2[n] / 8   
-        jj = v2[n] % 8
-        if(mat[ii][jj] != -1){
-           bool = false
-        }     
-        } 
-    } 
-}
-
-println(ii)
-println(ii)
 
 
+
+/*
 println(bool)
 
 println ("v1 este:")
 for(int k = 0; k<v1.size; k++){
 println(v1[k])
-}
-
+}*/
+/*
 println ("v2 este:")
 for(k = 0; k<v2.size; k++){
 println(v2[k])
@@ -118,5 +74,5 @@ println ("v4 este:")
 for(k = 0; k<v4.size; k++){
     println(v4[k])
 }
-
+*/
 

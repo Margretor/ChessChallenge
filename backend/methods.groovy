@@ -10,15 +10,15 @@ import groovy.json.*
 class methods {    
     
         
-    def ce_primesc_de_la_anca = '{"piece":{'+ 
-                '"id": 4,'+
-                '"pieceType": "king",'+
-                '"colour": "black",'+
-                '"position": 20,'+
-                '"onBoard": true'+
+    def ce_primesc_de_la_anca ='{"piece":{'+
+            '"id": 18,'+
+            '"pieceType": "pawn",'+
+           '"colour": "white",'+
+            '"position": 34,'+
+            '"onBoard": 10'+
             '},'+
-    '"new_pos": 1'+    // 50, 51, 52, 44, 42, 36, 35, 34
-    '}'
+	          '"new_pos": 26'+
+	          '}';
     def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
 
     def get_sql(String command){          
@@ -113,17 +113,21 @@ class methods {
       
       //pt alb :
       if (data.piece.colour == "white") {
-        if((data.position == 48) || (data.position == 49) || (data.position == 50) || (data.position == 51) || (data.position == 52) || (data.position == 53) || (data.position == 54) || (data.position == 55)) {
+        println("aici-1")
+        if((data.piece.position == 48) || (data.piece.position == 49) || (data.piece.position == 50) || (data.piece.position == 51) || (data.piece.position == 52) || (data.piece.position == 53) || (data.piece.position == 54) || (data.piece.position == 55)) {
           newi = ci - 1   
-          newj = cj       
+          newj = cj  
+          println("aici0")     
           if (((newi == di) && (newj == dj))  && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  &&  (mat[newi][newj] == -1)) {
             bool = true
+            println("aici1")
           }
           else {
             newi = ci - 2   
             newj = cj                 
             if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  && (mat[newi][newj] == -1) && (mat[newi+1][newj] == -1)){
               bool = true
+              println("aici2")
             }
           }        
         }
@@ -133,6 +137,7 @@ class methods {
           newj = cj + 1  
           if ((newi == di) && (newj == dj) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8) )  { 
             bool = true
+            println("aici3")
           }
         }
         //daca pe diagonala stanga avem piesa neagra
@@ -141,22 +146,27 @@ class methods {
           newj = cj - 1 
           if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8))  {
             bool = true
+            println("aici4")
           } 
         }
-
         else if(mat[ci-1][cj] == -1){
           newi = ci - 1 
           newj = cj     
           if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8) ) {
             bool = true
+            println("aici5")
           }
         }
-        else bool = false
+        else{
+          bool = false
+          println("aiciff")
+        }
+        
       }
       //pt negru:
       //if (data.piece.color == "black") {  //else
       else{
-        if((data.position == 8) || (data.position == 9) || (data.position == 10) || (data.position == 11) || (data.position == 12) || (data.position == 13) || (data.position == 14) || (data.position == 15)) {
+        if((data.piece.position == 8) || (data.piece.position == 9) || (data.piece.position == 10) || (data.piece.position == 11) || (data.piece.position == 12) || (data.piece.position == 13) || (data.piece.position == 14) || (data.piece.position == 15)) {
           newi = ci + 1   
           newj = cj       
           if (((newi == di) && (newj == dj)) && (newi >= 0) && (newi <8) && (newj >= 0) && (newj <8)  &&   (mat[newi][newj] == -1)) {
@@ -458,7 +468,7 @@ class methods {
       }
       return bool
     }
-    /*
+    
 
     def is_valid_bishop(ci, cj, di, dj, data, mat){
       def bool = false
@@ -536,7 +546,7 @@ class methods {
 
       return bool
     }
-
+/*
     def is valid_queen(ci, cj, di, dj, data, mat){
       def bool = false
       if((is_valid_rook(ci, cj, di, dj, data, mat) == true) || (is_valid_bishop(ci, cj, di, dj, data, mat) == true)){

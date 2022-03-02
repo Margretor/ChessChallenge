@@ -43,12 +43,12 @@ for(int i = 0; i < 8 ; i++) {
 */
 println(data)
 //println(Method.col())
-//println(ii)
-//println(jj)
-//println(x)
-//println(y)
+println(ii)
+println(jj)
+println(x)
+println(y)
 
-println(Method.is_valid_king(ii, jj, x, y, data, mat))
+println(Method.is_valid_pawn(ii, jj, x, y, data, mat))
 //Method.is_valid_pawn(ii, jj, x, y, data, mat)
 //println(Method.is_it_valid(data))
 
