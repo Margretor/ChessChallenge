@@ -210,34 +210,9 @@ class methods {
       return bool
     }
 
-       //if bool => are obstacole()?? 
-      //bool -> modif
-      //if bool => verific culoarea daca am piesa pe poz dorita
-
-      /*
-      if(bool){
-        for( int k = 0; k < squares.size(); k++){
-          if(squares[k].position == ce_primesc_de_la_anca.new_pos){  //gasesc patratica pe care vr sa mut piesa
-            if((squares[k].position == n1) || (squares[k].position == n2)){
-              if(squares[n2].idPiece == NULL)
-            }
-            if((squares[k].position == n3) || (squares[k].position == n4)){
-
-            }
-            else{
-              bool = false
-              break
-            }
-          }
-        }
-      }*/
-
-    
-    
-
     def is_valid_rook(ci, cj, di, dj, data, mat){
       def bool = false
-      def pos = ci * 8 + cj
+      def pos = di * 8 + dj
       def v1 = []
       def v2 = []
       def v3 = []
@@ -1000,8 +975,7 @@ class methods {
       def bool = false
       def pieces = get_pieces()
       for(int k = 0; k < pieces.size(); k++){
-        if( data.piece.id == pieces[k].id){   //data = ce primesc de la anca
-        //x, y sa apartina 0, 7
+        if( data.piece.id == pieces[k].id){   
           Integer i = data.piece.position / 8   
           Integer j = data.piece.position % 8
           Integer x = data.new_pos / 8
@@ -1032,10 +1006,6 @@ class methods {
 
 
 
-    //is_it_valid()
-    //def bool = is_it_valid() //nu asa!!
-    //if (bool) do_the_move
-    //else ???
 
 
     def do_the_move(data){         //turn  //do_the_move(json_din_post == ce primesc de la anca)
@@ -1065,17 +1035,6 @@ class methods {
 
 
     //pt reset do_sql(string(piese.sql))
-
-
-
-
-
-
-
-
-    //def addun(x, y) { 
-    //println x+y
-    //}
     
 
 }
