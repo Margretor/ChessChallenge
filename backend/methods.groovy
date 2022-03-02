@@ -233,7 +233,7 @@ class methods {
       }*/
 
     
-    /*
+    
 
     def is_valid_rook(ci, cj, di, dj, data, mat){
       def bool = false
@@ -250,7 +250,7 @@ class methods {
 
       return bool
     }
-    */
+    
     def is_valid_knight(ci, cj, di, dj, data, mat){
       def bool = false
       def newi
@@ -467,13 +467,15 @@ class methods {
           }     
       }
       return bool
-    }
-    
+    }   
 
     def is_valid_bishop(ci, cj, di, dj, data, mat){
       def bool = false
       def nr = 0
       def j = cj
+      def index = 0
+      Integer ii  
+      Integer jj 
       def pos = di * 8 + dj
       def v1 = []  //stanga sus
       def v2 = []  //dreapta jos
@@ -519,41 +521,258 @@ class methods {
           }
       }
 
-      for(int k = 1; k<v1.size; k++){
-        if(pos == v1[k]){
-          bool = true
+      //pt alb
+      if (data.piece.colour == "white") {
+        //ptv1
+
+        for(int k = 1; k<v1.size; k++){
+            if(pos == v1[k]){
+              if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                bool = true
+              }
+              else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                bool = false
+              }
+              else {
+                bool = true
+              }
+              index = k
+              break
+              //-- if culoare black
+              //--else if white
+              // else bool =true
+            }
+        }
+
+        if(bool == true){
+            for(int n = 1; n <index; n++){ //
+                ii = v1[n] / 8   
+                jj = v1[n] % 8
+                if(mat[ii][jj] != -1){
+                  bool = false
+                }     
+            } 
+        } 
+
+        //pt v2
+        if(bool == false){
+            for(k = 1; k<v2.size; k++){
+              if(pos == v2[k]){
+                if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                  bool = true
+                }
+                else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                  bool = false
+                }
+                else {
+                  bool = true
+                }
+                index = k
+                break
+              }
+            }
+
+            if(bool == true){
+                for(n = 1; n <index; n++){
+                    ii = v2[n] / 8   
+                    jj = v2[n] % 8
+                    if(mat[ii][jj] != -1){
+                        bool = false
+                    }     
+                } 
+            } 
+        }
+
+        //pt v3
+        if(bool == false){
+            for(k = 1; k<v3.size; k++){
+                if(pos == v3[k]){
+                  if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                    bool = true
+                  }
+                  else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                    bool = false
+                  }
+                  else {
+                    bool = true
+                  }
+                  index = k
+                  break
+                }
+            }
+
+            if(bool == true){
+                for(n = 1; n <index; n++){
+                    ii = v3[n] / 8   
+                    jj = v3[n] % 8
+                    if(mat[ii][jj] != -1){
+                        bool = false
+                    }     
+                } 
+            } 
+        }
+
+        //pt v4
+        if(bool == false){ 
+            for(k = 1; k<v4.size; k++){
+              if(pos == v4[k]){
+                if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                  bool = true
+                }
+                else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                  bool = false
+                }
+                else {
+                  bool = true
+                }
+                index = k
+                break
+                }
+            }
+
+            if(bool == true){
+                for(n = 1; n <index; n++){
+                    ii = v4[n] / 8   
+                    jj = v4[n] % 8
+                    if(mat[ii][jj] != -1){
+                        bool = false
+                    }     
+                } 
+            } 
         }
       }
 
-      for(int k = 1; k<v2.size; k++){
-        if(pos == v2[k]){
-          bool = true
-        }
-      }
+      //pt negru
+      else{
+        //ptv1
 
-      for(int k = 1; k<v3.size; k++){
-        if(pos == v1[k]){
-          bool = true
+        for(int k = 1; k<v1.size; k++){
+            if(pos == v1[k]){
+              if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                bool = true
+              }
+              else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                bool = false
+              }
+              else {
+                bool = true
+              }
+              index = k
+              break
+              //-- if culoare black
+              //--else if white
+              // else bool =true
+            }
         }
-      }
 
-      for(int k = 1; k<v3.size; k++){
-        if(pos == v1[k]){
-          bool = true
+        if(bool == true){
+            for(int n = 1; n <index; n++){ //
+                ii = v1[n] / 8   
+                jj = v1[n] % 8
+                if(mat[ii][jj] != -1){
+                  bool = false
+                }     
+            } 
+        } 
+
+        //pt v2
+        if(bool == false){
+            for(k = 1; k<v2.size; k++){
+              if(pos == v2[k]){
+                if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                  bool = true
+                }
+                else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                  bool = false
+                }
+                else {
+                  bool = true
+                }
+                index = k
+                break
+              }
+            }
+
+            if(bool == true){
+                for(n = 1; n <index; n++){
+                    ii = v2[n] / 8   
+                    jj = v2[n] % 8
+                    if(mat[ii][jj] != -1){
+                        bool = false
+                    }     
+                } 
+            } 
+        }
+
+        //pt v3
+        if(bool == false){
+            for(k = 1; k<v3.size; k++){
+                if(pos == v3[k]){
+                  if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                    bool = true
+                  }
+                  else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                    bool = false
+                  }
+                  else {
+                    bool = true
+                  }
+                  index = k
+                  break
+                }
+            }
+
+            if(bool == true){
+                for(n = 1; n <index; n++){
+                    ii = v3[n] / 8   
+                    jj = v3[n] % 8
+                    if(mat[ii][jj] != -1){
+                        bool = false
+                    }     
+                } 
+            } 
+        }
+
+        //pt v4
+        if(bool == false){ 
+            for(k = 1; k<v4.size; k++){
+              if(pos == v4[k]){
+                if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'white')){
+                  bool = true
+                }
+                else if((mat[di][dj] != -1) && (get_sql('SELECT * FROM tblPieces WHERE id = ' + mat[di][dj]).colour[0] == 'black')){
+                  bool = false
+                }
+                else {
+                  bool = true
+                }
+                index = k
+                break
+                }
+            }
+
+            if(bool == true){
+                for(n = 1; n <index; n++){
+                    ii = v4[n] / 8   
+                    jj = v4[n] % 8
+                    if(mat[ii][jj] != -1){
+                        bool = false
+                    }     
+                } 
+            } 
         }
       }
-      
 
       return bool
     }
-/*
+
     def is valid_queen(ci, cj, di, dj, data, mat){
       def bool = false
       if((is_valid_rook(ci, cj, di, dj, data, mat) == true) || (is_valid_bishop(ci, cj, di, dj, data, mat) == true)){
         bool = true
       }     
       return bool
-    }*/
+    }
 
     def is_valid_king(ci, cj, di, dj, data, mat){
       def bool = false
@@ -788,14 +1007,14 @@ class methods {
           Integer x = data.new_pos / 8
           Integer y = data.new_pos % 8
           switch (pieces[i].pieceType){
-           /* case "rook": bool = is_valid_rook(i, j, x, y, data, mat)
-            break*/
+            case "rook": bool = is_valid_rook(i, j, x, y, data, mat)
+            break
             case "knight": bool = is_valid_knight(i, j, x, y, data, mat)
-            break/*
+            break
             case "bishop": bool = is_valid_bishop(i, j, x, y, data, mat)
             break
             case "queen": bool = is_valid_queen(i, j, x, y, data, mat)
-            break*/
+            break
             case "king": bool = is_valid_king(i, j, x, y, data, mat)
             break
             case "pawn": bool = is_valid_pawn(i, j, x, y, data, mat)

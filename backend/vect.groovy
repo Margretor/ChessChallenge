@@ -50,13 +50,18 @@ for(int i = ci; i<8; i++){
         nr++
     }
 }
-println(v1[1]%8)
+
+
+
+
+
+//ptv1
 
 for(int k = 1; k<v1.size; k++){
     if(pos == v1[k]){
-       -- if culoare black
-       --else if white
-       else bool =true
+       //-- if culoare black
+       //--else if white
+      // else bool =true
         bool = true
         break
     }
@@ -69,33 +74,95 @@ if(bool == true){
         if(mat[ii][jj] != -1){
            bool = false
         }     
-        } 
     } 
+} 
 
+//pt v2
 if(bool = false){
-    for(int k = 1; k<v1.size; k++){
+    for(int k = 1; k<v2.size; k++){
     if(pos == v2[k]){
        -- if culoare black
        --else if white
        else bool =true
         bool = true
         break
+        }
     }
-}
 
-if(bool == true){
-    for(int n = 1; n <v2.size-1; n++){
-        ii = v2[n] / 8   
-        jj = v2[n] % 8
-        if(mat[ii][jj] != -1){
-           bool = false
-        }     
+    if(bool == true){
+        for(int n = 1; n <v2.size-1; n++){
+            ii = v2[n] / 8   
+            jj = v2[n] % 8
+            if(mat[ii][jj] != -1){
+                bool = false
+            }     
         } 
     } 
 }
 
-println(ii)
-println(ii)
+//pt v3
+if(bool = false){
+    for(int k = 1; k<v3.size; k++){
+        if(pos == v3[k]){
+        -- if culoare black
+        --else if white
+        else bool =true
+            bool = true
+            break
+            }
+    }
+
+    if(bool == true){
+        for(int n = 1; n <v2.size-1; n++){
+            ii = v3[n] / 8   
+            jj = v3[n] % 8
+            if(mat[ii][jj] != -1){
+                bool = false
+            }     
+        } 
+    } 
+}
+
+//pt v4
+if(bool = false){
+    for(int k = 1; k<v4.size; k++){
+    if(pos == v4[k]){
+       -- if culoare black
+       --else if white
+       else bool =true
+        bool = true
+        break
+        }
+    }
+
+    if(bool == true){
+        for(int n = 1; n <v2.size-1; n++){
+            ii = v4[n] / 8   
+            jj = v4[n] % 8
+            if(mat[ii][jj] != -1){
+                bool = false
+            }     
+        } 
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 println(bool)
