@@ -10,8 +10,8 @@ Integer ii
 Integer jj 
 def v1 = []  //sus
 def v2 = []  //jos
-def v3 = []  //dreapta
-def v4 = []  //stanga
+def v3 = []  //stanga
+def v4 = []  //dreapta
 //def pos = di * 8 + dj
 
 
