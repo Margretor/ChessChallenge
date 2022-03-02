@@ -21,27 +21,39 @@ def Method = new methods()
 //println(Method.get_mapa().squaresList[43])
 //println(Method.data.piece.position)
 
-
-
-
+//ce primesc de la anca:
+def data = Method.data
+ Integer ii = data.piece.position / 8   
+  Integer jj = data.piece.position % 8
+  Integer x = data.new_pos / 8
+  Integer y = data.new_pos % 8
+  def mat = Method.get_matrix()
 
 //print the matrix of idSquares:
-/*def mat = Method.get_matrix()
-for(int i = 0; i < 8 ; i++) {
+
+/*for(int i = 0; i < 8 ; i++) {
         
         for(int j = 0; j < 8; j++) {
           
-          print(mat[i][j] + " ");
+          print(Method.get_matrix()[i][j] + " ");
           
         }
         println();
 }*/
+println(data)
+//println(Method.col())
+println(Method.is_valid_pawn(ii, jj, x, y, data, mat))
+//println(Method.is_it_valid(data))
+
+//if(Method.is_it_valid(data) == true){
+//  Method.do_the_move(data)
+//}
 
 
 
 
 
-
+/*
 
 
 ratpack{
@@ -63,12 +75,17 @@ ratpack{
         }    
         
 
-
+        //is_it_valid()
+    //def bool = is_it_valid() //nu asa!!
+    //if (bool) do_the_move
+    //else ???
         post("piesa/something") {
           getRequest().getBody().then({ data ->
             String text = data.getText();
             //reverse parse din text json in mapa
-          
+            if(is_it_valid(text) == true){
+              do_the_move(text)
+            }
             println(text)
             render(text)
           })
@@ -80,6 +97,20 @@ ratpack{
        
       }
 }
+*/
+
+/*
+for(int i = 0; i < 8 ; i++) {
+        
+        for(int j = 0; j < 8; j++) {
+          
+          print(Method.get_matrix()[i][j] + " ");
+          
+        }
+        println();
+}*/
+
+
 
 
 
