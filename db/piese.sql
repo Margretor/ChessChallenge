@@ -25,8 +25,7 @@ DESCRIBE tblSquares;
 CREATE TABLE tblBoard (
 	scoreW INT,
 	scoreB INT,
-	turn   TINYINT(1),
-	in_sah TINYINT(1)
+	turn   TINYINT(1)
 );
 DESCRIBE tblBoard;
 
@@ -61,11 +60,11 @@ INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "whit
 (19, "black", 19, NULL), (20, "white", 20, NULL), (21,"black", 21, NULL), (22, "white", 22, NULL),
 (23, "black", 23, NULL), (24, "black", 24, NULL), (25, "white", 25, NULL), (26, "black", 26, NULL), 
 (27, "white", 27, NULL), (28, "black", 28, NULL), (29, "white", 29, NULL), (30, "black", 30, NULL),
-(31, "white", 31, NULL), (32, "white", 32, NULL), (33, "black", 33, NULL), (34, "white", 34, 18), 
+(31, "white", 31, NULL), (32, "white", 32, NULL), (33, "black", 33, NULL), (34, "white", 34, NULL), 
 (35, "black", 35, NULL), (36, "white", 36, NULL), (37, "black", 37, NULL), (38, "white", 38, NULL), 
 (39, "black", 39, NULL), (40,  "black", 40, NULL), (41, "white", 41, NULL), (42, "black", 42, NULL), 
 (43,"white", 43, NULL), (44, "black", 44, NULL), (45, "white", 45, NULL), (46, "black", 46, NULL), 
-(47, "white", 47, NULL), ( 48, "white", 48, 16), (49, "black", 49, 17), (50, "white", 50, NULL), 
+(47, "white", 47, NULL), ( 48, "white", 48, 16), (49, "black", 49, 17), (50, "white", 50, 18), 
 (51, "black", 51, 19), (52, "white", 52, 20), (53, "black", 53, 21), (54, "white", 54, 22), 
 (55,"black", 55, 23), (56, "black", 56, 24), (57, "white", 57, 25), (58, "black", 58, 26), 
 (59, "white", 59, 27), ( 60, "black", 60, 28), (61, "white", 61, 29), ( 62, "black", 62, 30), 
@@ -74,7 +73,7 @@ INSERT INTO tblSquares  VALUES ( 0, "white", 0, 0),(1, "black", 1, 1), (2, "whit
 SELECT * FROM tblSquares;
 
 
-INSERT INTO tblBoard VALUES( 0, 0, 0, 0);
+INSERT INTO tblBoard VALUES( 0, 0, 0);
 
 SELECT * FROM tblBoard;
 
