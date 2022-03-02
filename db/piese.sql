@@ -78,11 +78,3 @@ INSERT INTO tblBoard VALUES( 0, 0, 0);
 SELECT * FROM tblBoard;
 
 
-#DELETE FROM tblPieces WHERE id = 13;
-/*UPDATE tblSquares SET idPiece = NULL WHERE idSquare = 51;
-#delete
-UPDATE tblPieces SET position = 43 WHERE id = 19;
-UPDATE tblSquares SET idPiece = 19 WHERE idSquare = 43;
-SELECT * FROM tblPieces;
-SELECT * FROM tblSquares;
-*/

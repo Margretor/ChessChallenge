@@ -11,7 +11,6 @@ import groovy.sql.Sql
 import static ratpack.groovy.Groovy.*         
 import static ratpack.jackson.Jackson.jsonNode
 
-//
 import groovy.json.*
 
 def Method = new methods()
@@ -140,11 +139,7 @@ ratpack{
           })
 
         }
-
-
-
-        
-       
+      
       }
 }
 
