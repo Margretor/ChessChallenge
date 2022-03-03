@@ -10,7 +10,7 @@ import groovy.json.*
 class methods {    
     
         
-    def ce_primesc_de_la_anca ='{"piece":{'+
+    def ce_primesc_de_la_anca = {"piece":{'+
             '"id": 18,'+
             '"pieceType": "pawn",'+
            '"colour": "white",'+
@@ -18,7 +18,7 @@ class methods {
             '"onBoard": 10'+
             '},'+
 	          '"new_pos": 26'+
-	          '}';
+	          '};
     def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
 
     def get_sql(String command){          

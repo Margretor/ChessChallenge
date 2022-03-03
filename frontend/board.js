@@ -215,18 +215,18 @@ console.log(pieces);
 //         imgKingW.src = "../img/whiteKing.png";
 //     }
 
-var imgPawn = "../img/blackPawn.png";
-var imgRook = "../img/blackRook.png";
-var imgKnight = "../img/blackKnight.png";
-var imgBishop = "../img/blackBishop.png";
-var imgQueen = "../img/blackQueen.png";
-var imgKing = "../img/blackKing.png";
-var imgPawnW = "../img/whitePawn.png";
-var imgRookW = "../img/whiteRook.png";
-var imgKnightW = "../img/whiteKnight.png"
-var imgBishopW = "../img/whiteBishop.png";
-var imgQueenW = "../img/whiteQueen.png";
-var imgKingW = "../img/whiteKing.png";
+var black_pawn = "../img/blackPawn.png";
+var black_rook = "../img/blackRook.png";
+var black_knight = "../img/blackKnight.png";
+var black_bishop = "../img/blackBishop.png";
+var black_queen = "../img/blackQueen.png";
+var black_king = "../img/blackKing.png";
+var white_pawn = "../img/whitePawn.png";
+var white_rook = "../img/whiteRook.png";
+var white_knight = "../img/whiteKnight.png"
+var white_bishop = "../img/whiteBishop.png";
+var white_queen = "../img/whiteQueen.png";
+var white_king = "../img/whiteKing.png";
 
 
 
@@ -255,39 +255,39 @@ let draw_piece = (x, y, color, pieceType) => {
     switch(pieceType){
         case 'pawn':
             if(color == 'black')
-                e.src = imgPawn;
+                e.src = black_pawn;
             else
-                e.src = imgPawnW;
+                e.src = white_pawn;
             break;
         case 'rook':
             if(color == 'black')
-                e.src = imgRook;
+                e.src = black_rook;
             else
-                e.src = imgRookW;
+                e.src = white_rook;
             break;
         case 'knight':
             if(color == 'black')
-                e.src = imgKnight;
+                e.src = black_knight;
             else
-                e.src = imgKnightW;
+                e.src = white_knight;
             break;
         case 'bishop':
             if(color == 'black')
-                e.src = imgBishop;
+                e.src = black_bishop;
             else
-                e.src = imgBishopW;
+                e.src = white_bishop;
             break;
         case 'queen':
             if(color == 'black')
-                e.src = imgQueen;
+                e.src = black_queen;
             else
-                e.src = imgQueenW;
+                e.src = white_queen;
             break;
         case 'king':
             if(color == 'black')
-                e.src = imgKing;
+                e.src = black_king;
             else
-                e.src = imgKingW;
+                e.src = white_king;
             break;
     }
 
@@ -371,7 +371,9 @@ function renderBoard() {
                 var position = piece.position;
                 var y = Math.floor(position / 8);
                 var x = position % 8;
+                var pos = y*8 +x;
                 console.log(y);
+                console.log("pozitia este"+pos);
                 draw_piece(x, y, piece.colour, piece.pieceType);
             }
         }
@@ -380,7 +382,7 @@ function renderBoard() {
 
 const message = 'Hello world' // Try edit me
 
-function post_data() {//dupa asta, apelez get data
+function post_data() {
     const url = 'https://jsonplaceholder.typicode.com/posts'
 
     const request={
@@ -391,19 +393,56 @@ function post_data() {//dupa asta, apelez get data
         method:"POST"
     };
 
-    fetch(url, request).then(data=>{return data.json()})  //aici in loc de return data.json ar trebui apelata functia care sa faca ceva cu jsonul
+    fetch(url, request).then(data=>{renderBoard()})  //aici in loc de return data.json ar trebui apelata functia care sa faca ceva cu jsonul
         .then(res=>{console.log(res)})
         .catch(error=>{console.log(error)})
 }
 
 console.log(post_data())  // va da odata undefined pt ca inca nu e gata requestul si dupa va arata si rezultatul
 
-function get_data(){//apelat prima data si dupa operatii
+function get_data(){
     const url = 'https://jsonplaceholder.typicode.com/posts'
-    fetch(url).then(data=>{return data.json()})  //aici in loc de return data.json ar trebui apelata functia care sa faca ceva cu jsonul
+    fetch(url).then(data=>{renderBoard()})  //aici in loc de return data.json ar trebui apelata functia care sa faca ceva cu jsonul
         .then(res=>{console.log(res)})
         .catch(error=>{console.log(error)})
 }
 
 console.log(get_data()) // va da odata undefined pt ca inca nu e gata requestul si dupa va arata si rezultatul
-renderBoard();
+
+// const message = 'Hello world' // Try edit me
+//
+// function post_data() {//dupa asta, apelez get data
+//     const txt = 'https://jsonplaceholder.typicode.com/posts'
+//
+//     const request= {
+//         headers:{
+//             "content-type":"application/json"
+//         },
+//         //body:JSON.stringify('{"piece":{'+' "id":10,'+'"colour":"black","positionSquare":51,'+'"onBoard":10,'x''},'+"new_pos":18'+'}')
+//         method:"POST"
+//     };
+//
+//     fetch(obj, request).then(data=>{return renderBoard()})  //aici in loc de return data.json ar trebui apelata functia care sa faca ceva cu jsonul
+//         .then(res=>{console.log(res)})
+//         .catch(error=>{console.log(error)})
+// }
+//
+//
+//
+// console.log(post_data())  // va da odata undefined pt ca inca nu e gata requestul si dupa va arata si rezultatul
+//
+// function get_data(){//apelat prima data si dupa operatii
+//     const url = 'https://jsonplaceholder.typicode.com/posts'
+//     fetch(url).then(data=>{return data.json()})  //aici in loc de return data.json ar trebui apelata functia care sa faca ceva cu jsonul
+//         .then(res=>{console.log(res)})
+//         .catch(error=>{console.log(error)})
+// }
+//
+// console.log(get_data()) // va da odata undefined pt ca inca nu e gata requestul si dupa va arata si rezultatul
+ renderBoard();
+// public static Image getImageFromArray(int[] pixels, int width, int height) {
+//     BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+//     WritableRaster raster = (WritableRaster) image.getData();
+//     raster.setPixels(0,0,width,height,pixels);
+//     return image;
+// }
