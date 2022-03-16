@@ -10,26 +10,16 @@ import groovy.json.*
 class methods {    
     
         
-<<<<<<< HEAD
-    def ce_primesc_de_la_anca = {"piece":{'+
+    /*def ce_primesc_de_la_anca = {"piece":{'+
             '"id": 18,'+
-=======
-    def ce_primesc_de_la_anca ='{"piece":{'+
-            '"id": 9,'+
->>>>>>> 17969e08383428b8edbdeb4c7387d55f0b6981e7
             '"pieceType": "pawn",'+
            '"colour": "black",'+
             '"position": 9,'+
             '"onBoard": 1'+
             '},'+
-<<<<<<< HEAD
 	          '"new_pos": 26'+
 	          '};
-=======
-	          '"new_pos": 18'+
-	          '}';
->>>>>>> 17969e08383428b8edbdeb4c7387d55f0b6981e7
-    def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)
+    def data = new JsonSlurper().parseText(ce_primesc_de_la_anca)*/
 
     def get_sql(String command){          
         def sql = Sql.newInstance('jdbc:mysql://localhost:3306/chessDB', 
